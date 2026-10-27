@@ -1,0 +1,2105 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="pageTitle">Studio Tayssa Lopes | Agendamento & Serviços</title>
+
+    <!-- META TAGS DE COMPARTILHAMENTO (OPEN GRAPH / WHATSAPP) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Studio Tayssa Lopes | Agendamento & Serviços">
+    <meta property="og:description" content="Especialista em Cílios & Sobrancelhas. Agende seu horário e veja a tabela de valores online com confirmação automática.">
+    <meta property="og:image" content="https://placehold.co/1200x630/6c429c/ffffff?text=Studio+Tayssa+Lopes">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- PWA & MOBILE META TAGS -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6c429c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Studio Tayssa">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: 'var(--color-brand-50, #f8f4fc)',
+                            100: 'var(--color-brand-100, #f0e6fa)',
+                            200: 'var(--color-brand-200, #e1cdf2)',
+                            300: 'var(--color-brand-300, #cca5e7)',
+                            400: 'var(--color-brand-400, #b174d8)',
+                            500: 'var(--color-brand-500, #9549c4)',
+                            600: 'var(--color-brand-600, #7d35a8)',
+                            700: 'var(--color-brand-700, #6c429c)',
+                            800: 'var(--color-brand-800, #583681)',
+                            900: 'var(--color-brand-900, #4a2e6a)',
+                            950: 'var(--color-brand-950, #2f1b47)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-brand-50: #f8f4fc;
+            --color-brand-100: #f0e6fa;
+            --color-brand-200: #e1cdf2;
+            --color-brand-300: #cca5e7;
+            --color-brand-400: #b174d8;
+            --color-brand-500: #9549c4;
+            --color-brand-600: #7d35a8;
+            --color-brand-700: #6c429c;
+            --color-brand-800: #583681;
+            --color-brand-900: #4a2e6a;
+            --color-brand-950: #2f1b47;
+            --grad-start: #7d35a8;
+            --grad-end: #6c429c;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .dark .glass-card {
+            background: rgba(26, 20, 38, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .tab-active {
+            background: linear-gradient(135deg, var(--grad-start) 0%, var(--grad-end) 100%) !important;
+            color: #ffffff !important;
+            box-shadow: 0 8px 20px -4px rgba(108, 66, 156, 0.4);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(108, 66, 156, 0.25);
+            border-radius: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        button, a, input, select {
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-purple-50/40 to-pink-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-purple-950/40 text-slate-800 dark:text-slate-100 min-h-full transition-colors duration-300 pb-12">
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastNotification" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-2xl bg-slate-900/90 dark:bg-white/95 text-white dark:text-slate-900 text-xs font-semibold shadow-xl backdrop-blur-md flex items-center space-x-2 animate-fade-in border border-white/10 hidden max-w-sm">
+        <i class="fa-solid fa-sparkles text-amber-400"></i>
+        <span id="toastText">Ação realizada!</span>
+    </div>
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav class="sticky top-0 z-40 w-full glass-card border-b border-purple-100/50 dark:border-slate-800/80 px-4 py-3 mb-6 shadow-sm">
+        <div class="max-w-md mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div id="navLogoContainer" class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-700 to-brand-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-brand-700/20 overflow-hidden shrink-0">
+                    <span id="navLogoText">TL</span>
+                    <img id="navLogoImg" class="w-full h-full object-cover hidden" alt="Logo">
+                </div>
+                <div>
+                    <h1 id="navTitle" class="font-bold text-slate-900 dark:text-white text-base leading-tight truncate max-w-[180px]">Studio Tayssa Lopes</h1>
+                    <p id="navSubTitle" class="text-xs text-brand-700 dark:text-brand-300 font-medium truncate max-w-[180px]">Cílios & Sobrancelhas</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2">
+                <button id="themeToggle" type="button" aria-label="Alternar Tema" class="w-9 h-9 rounded-xl bg-purple-100/60 dark:bg-slate-800 text-brand-700 dark:text-brand-300 flex items-center justify-center transition-all active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-moon text-sm dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-sm hidden dark:block"></i>
+                </button>
+                
+                <button id="btnOpenAdmin" type="button" class="px-3 py-1.5 rounded-xl bg-purple-100/60 dark:bg-slate-800 text-brand-700 dark:text-brand-300 text-xs font-semibold flex items-center space-x-1.5 transition-all active:scale-95 cursor-pointer">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Gestão</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN APP CONTENT -->
+    <main class="max-w-md mx-auto px-4 space-y-5">
+        <!-- PWA INSTALL BANNER (APARECE QUANDO O NAVEGADOR PERMITE INSTALAÇÃO) -->
+        <div id="pwaInstallBanner" class="hidden p-3.5 rounded-2xl bg-gradient-to-r from-brand-700 to-brand-500 text-white shadow-lg shadow-brand-700/20 flex items-center justify-between gap-3 animate-fade-in">
+            <div class="flex items-center space-x-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0 text-white text-lg">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+                <div class="min-w-0">
+                    <p class="text-xs font-bold leading-tight truncate">Instalar Aplicativo</p>
+                    <p class="text-[10px] text-purple-100/90 leading-tight">Acesse rápido direto da sua tela inicial</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 shrink-0">
+                <button id="btnInstallPwa" type="button" class="px-3 py-1.5 rounded-xl bg-white text-brand-700 hover:bg-purple-50 text-xs font-bold transition-all active:scale-95 shadow-xs cursor-pointer">
+                    Instalar
+                </button>
+                <button id="btnCloseInstallBanner" type="button" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer transition-all text-xs" title="Fechar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- HERO PROFILE CARD -->
+        <section class="glass-card rounded-3xl p-6 text-center shadow-xl shadow-brand-700/5 relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-brand-400 via-brand-600 to-brand-800"></div>
+            
+            <div class="relative w-24 h-24 mx-auto mb-3">
+                <div id="heroLogoContainer" class="w-full h-full rounded-full bg-gradient-to-tr from-brand-700 to-brand-500 text-white flex items-center justify-center text-2xl font-black shadow-lg shadow-brand-700/30 border-4 border-white dark:border-slate-900 overflow-hidden">
+                    <span id="heroLogoText">TL</span>
+                    <img id="heroLogoImg" class="w-full h-full object-cover hidden" alt="Logo Principal">
+                </div>
+                <span class="absolute bottom-1 right-1 w-5 h-5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full" title="Atendendo Hoje"></span>
+            </div>
+
+            <h2 id="heroTitle" class="text-xl font-bold text-slate-900 dark:text-white">Studio Tayssa Lopes</h2>
+            <p id="heroSubTitle" class="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-4">Especialista em Cílios & Sobrancelhas ✨</p>
+
+            <div class="flex items-center justify-center gap-2">
+                <a id="whatsappBtnHeader" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-3 rounded-xl bg-brand-50 dark:bg-brand-950/40 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800/50 text-xs font-bold flex items-center justify-center space-x-2 transition-all active:scale-95 shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span id="phoneDisplay">(96) 99117-9212</span>
+                </a>
+                
+                <button id="btnCopyPixHeader" type="button" class="py-2.5 px-3 rounded-xl bg-brand-50 dark:bg-brand-950/40 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800/50 text-xs font-bold flex items-center justify-center space-x-2 transition-all active:scale-95 shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-copy text-sm"></i>
+                    <span>Chave PIX</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- NAVIGATION TABS -->
+        <section class="glass-card p-1.5 rounded-2xl flex space-x-1 shadow-md shadow-brand-700/5">
+            <button id="tab-btn-valores" type="button" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center space-x-2 text-slate-600 dark:text-slate-400 tab-active cursor-pointer">
+                <i class="fa-solid fa-list"></i>
+                <span>Valores</span>
+            </button>
+            <button id="tab-btn-regras" type="button" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center space-x-2 text-slate-600 dark:text-slate-400 cursor-pointer">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Regras</span>
+            </button>
+            <button id="tab-btn-agendar" type="button" class="flex-1 py-2.5 px-3 rounded-xl text-xs font-bold transition-all duration-200 flex items-center justify-center space-x-2 text-slate-600 dark:text-slate-400 cursor-pointer">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Agendar</span>
+            </button>
+        </section>
+
+        <!-- TAB: VALORES -->
+        <section id="tab-valores" class="animate-fade-in space-y-4">
+            <div class="glass-card rounded-3xl p-5 shadow-lg shadow-brand-700/5">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <span id="serviceTableIconContainer" class="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-700 to-brand-600 text-white flex items-center justify-center text-xs shadow-sm shadow-brand-700/20 shrink-0" style="background: linear-gradient(135deg, var(--color-brand-700, #6c429c), var(--color-brand-600, #7d35a8));">
+                            <i class="fa-solid fa-bars text-white text-xs"></i>
+                        </span>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">Tabela de Serviços</h3>
+                    </div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300">Preços Atualizados</span>
+                </div>
+
+                <div class="mb-4">
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="serviceSearch" placeholder="Buscar procedimento ou extensão..." class="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                </div>
+
+                <div id="servicesContainer" class="divide-y divide-slate-100 dark:divide-slate-800">
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-brand-700 to-brand-500 rounded-2xl p-4 text-white shadow-lg shadow-brand-700/20 flex items-center justify-between">
+                <div>
+                    <h4 id="ctaTitle" class="font-bold text-sm">Pronta para realçar seu olhar?</h4>
+                    <p id="ctaSubtitle" class="text-xs text-brand-100 opacity-90 mt-0.5">Escolha seu horário agora em poucos passos.</p>
+                </div>
+                <button id="btnCTAAllValores" type="button" class="px-3.5 py-2 rounded-xl bg-white text-brand-800 text-xs font-bold shadow-md active:scale-95 transition-all cursor-pointer">
+                    Agendar Já
+                </button>
+            </div>
+        </section>
+
+        <!-- TAB: REGRAS -->
+        <section id="tab-regras" class="hidden animate-fade-in space-y-4">
+            <div class="glass-card rounded-3xl p-5 shadow-lg shadow-brand-700/5">
+                <div class="flex items-center space-x-2 mb-5">
+                    <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 flex items-center justify-center text-sm">📌</span>
+                    <h3 class="font-bold text-slate-900 dark:text-white text-base">Regras de Atendimento</h3>
+                </div>
+
+                <div id="rulesContainer" class="space-y-3.5">
+                </div>
+
+                <div id="sectionPixSinalRules" class="mt-5 p-4 rounded-2xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200/80 dark:border-amber-800/40 text-amber-900 dark:text-amber-200">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-qrcode text-amber-600 dark:text-amber-400"></i>
+                            <span class="text-xs font-bold">Chave PIX para Sinal (<span class="depositRuleText">R$ 50,00</span>)</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between bg-white/80 dark:bg-slate-900/80 p-2.5 rounded-xl border border-amber-200/50 dark:border-amber-800/30">
+                        <span id="pixKeyText" class="text-xs font-mono font-bold text-slate-800 dark:text-slate-200 truncate pr-2">96991179212</span>
+                        <button id="btnCopyPixRules" type="button" class="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-bold active:scale-95 transition-all cursor-pointer shrink-0">
+                            Copiar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB: AGENDAR -->
+        <section id="tab-agendar" class="hidden animate-fade-in space-y-4">
+            <div class="glass-card rounded-3xl p-5 shadow-lg shadow-brand-700/5">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="w-8 h-8 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 flex items-center justify-center text-sm">📅</span>
+                    <div>
+                        <h3 class="font-bold text-slate-900 dark:text-white text-base">Solicitar Agendamento</h3>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400">O horário escolhido é marcado e reservado automaticamente.</p>
+                    </div>
+                </div>
+
+                <form id="bookingForm" class="space-y-4">
+                    <div>
+                        <label for="selectService" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Procedimento Desejado:</label>
+                        <select id="selectService" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer">
+                        </select>
+                        <!-- Card com Miniatura da Foto do Procedimento Selecionado -->
+                        <div id="bookingSelectedServiceCard" class="mt-2.5 p-2.5 rounded-2xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/40 flex items-center space-x-3">
+                            <div class="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-purple-200 dark:border-purple-800/50 shadow-xs cursor-pointer group" onclick="openSelectedServicePhoto()" title="Toque para ver a foto ampliada">
+                                <img id="bookingSelectedServiceImg" src="" alt="Foto do Procedimento" class="w-full h-full object-cover transition-transform group-hover:scale-105" onerror="this.src=SVG_LASH_PLACEHOLDER">
+                                <span class="absolute bottom-0.5 right-0.5 w-4 h-4 rounded-full bg-black/60 text-white flex items-center justify-center text-[8px]">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                                </span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center justify-between">
+                                    <h4 id="bookingSelectedServiceName" class="font-bold text-xs text-slate-900 dark:text-white truncate">Volume Brasileiro</h4>
+                                    <span id="bookingSelectedServicePrice" class="text-xs font-black text-brand-700 dark:text-brand-300 ml-1">R$ 150,00</span>
+                                </div>
+                                <p id="bookingSelectedServiceDesc" class="text-[10px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">Descrição</p>
+                                <span class="text-[9px] text-brand-600 dark:text-brand-400 font-semibold flex items-center space-x-1 mt-1">
+                                    <i class="fa-solid fa-eye text-[9px]"></i>
+                                    <span>Toque na foto para ampliar</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="inputDate" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Data do Atendimento:</label>
+                        <input type="date" id="inputDate" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer">
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300">Horários Disponíveis:</label>
+                            <span class="text-[10px] text-rose-500 font-semibold flex items-center space-x-1">
+                                <i class="fa-solid fa-lock text-[10px]"></i>
+                                <span>*Vermelho = Ocupado</span>
+                            </span>
+                        </div>
+                        <div id="slotsGrid" class="grid grid-cols-3 gap-2">
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <label for="inputName" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Seu Nome Completo:</label>
+                        <input type="text" id="inputName" placeholder="Ex: Maria Silva" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+
+                    <div>
+                        <label for="inputNotes" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5">Observação (Opcional):</label>
+                        <input type="text" id="inputNotes" placeholder="Ex: Primeira vez / tenho extensão antiga" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 hover:from-brand-800 hover:to-brand-600 text-white font-bold text-xs shadow-lg shadow-brand-700/30 flex items-center justify-center space-x-2 transition-all active:scale-95 mt-2 cursor-pointer">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Confirmar & Marcar Horário Automaticamente</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- RODAPÉ -->
+        <footer class="text-center pt-4 pb-6">
+            <p id="footerText" class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">© 2026 Studio Tayssa Lopes • Todos os direitos reservados</p>
+        </footer>
+    </main>
+
+    <!-- MODAL DE CONFIRMAÇÃO DE AGENDAMENTO (CLIENTE) -->
+    <div id="bookingSuccessModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden animate-fade-in">
+        <div class="glass-card bg-white dark:bg-slate-900 w-full max-w-sm rounded-3xl p-6 shadow-2xl space-y-4 border border-purple-100 dark:border-slate-800">
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 mx-auto rounded-full bg-brand-100 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center text-2xl shadow-inner">
+                    <i class="fa-solid fa-circle-check text-2xl"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 dark:text-white text-base">
+                    Horário Marcado com Sucesso!
+                </h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">
+                    Seu horário foi <strong class="text-brand-600 dark:text-brand-400">reservado e bloqueado automaticamente</strong> na agenda do estúdio.
+                </p>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-purple-50/60 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/40 text-xs space-y-1.5">
+                <div class="flex justify-between">
+                    <span class="text-slate-500 dark:text-slate-400">Cliente:</span>
+                    <span id="modalClientName" class="font-bold text-slate-800 dark:text-slate-200">Maria Silva</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500 dark:text-slate-400">Procedimento:</span>
+                    <span id="modalServiceName" class="font-bold text-slate-800 dark:text-slate-200">Volume Brasileiro</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500 dark:text-slate-400">Data & Horário:</span>
+                    <span id="modalDateTime" class="font-bold text-brand-700 dark:text-brand-300">20/10/2026 às 10:00</span>
+                </div>
+                <div id="modalDepositRow" class="flex justify-between pt-1 border-t border-purple-100 dark:border-purple-900/30">
+                    <span class="text-slate-500 dark:text-slate-400">Sinal para confirmação:</span>
+                    <span id="modalDepositAmount" class="font-bold text-brand-700 dark:text-brand-300">R$ 50,00</span>
+                </div>
+            </div>
+
+            <div id="modalPixContainer" class="p-3 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-900/40 flex items-center justify-between text-xs">
+                <div>
+                    <span class="text-[10px] text-amber-700 dark:text-amber-400 font-bold block">Chave PIX:</span>
+                    <span id="modalPixKey" class="font-mono font-bold text-slate-800 dark:text-slate-200">96991179212</span>
+                </div>
+                <button id="btnCopyPixModal" type="button" class="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-bold text-[11px] cursor-pointer active:scale-95">
+                    Copiar
+                </button>
+            </div>
+
+            <div class="space-y-2 pt-1">
+                <a id="modalWhatsAppLink" href="#" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 hover:from-brand-800 hover:to-brand-600 text-white font-bold text-xs shadow-lg shadow-brand-700/30 flex items-center justify-center space-x-2 transition-all active:scale-95 text-center cursor-pointer">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span id="modalWhatsAppBtnText">Enviar Comprovante no WhatsApp</span>
+                </a>
+
+                <button id="btnCopyMessageModal" type="button" class="w-full py-2 px-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold text-xs hover:bg-slate-50 dark:hover:bg-slate-800 transition-all flex items-center justify-center space-x-1.5 cursor-pointer">
+                    <i class="fa-solid fa-copy text-xs"></i>
+                    <span>Copiar Mensagem do Agendamento</span>
+                </button>
+
+                <button id="btnCloseSuccessModal" type="button" class="w-full py-2 text-center text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">
+                    Fechar e ver agenda atualizada
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL / LIGHTBOX DE FOTO DO SERVIÇO EM TELA CHEIA -->
+    <div id="servicePhotoModal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 hidden animate-fade-in" onclick="closePhotoModal(event)">
+        <div class="relative max-w-sm w-full bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-purple-100/30 dark:border-slate-800" onclick="event.stopPropagation()">
+            <button type="button" onclick="closePhotoModal()" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center cursor-pointer transition-all active:scale-95 shadow-md">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div class="w-full aspect-square bg-slate-100 dark:bg-slate-800 overflow-hidden relative">
+                <img id="photoModalImg" src="" alt="Foto do Serviço" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4 space-y-1.5">
+                <div class="flex items-center justify-between">
+                    <h3 id="photoModalTitle" class="font-bold text-slate-900 dark:text-white text-base">Nome do Serviço</h3>
+                    <span id="photoModalPrice" class="font-black text-brand-700 dark:text-brand-300 text-sm">R$ 0,00</span>
+                </div>
+                <p id="photoModalDesc" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Descrição do procedimento</p>
+                <div class="pt-2">
+                    <button type="button" id="photoModalBtnBook" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 text-white text-xs font-bold shadow-md active:scale-95 transition-all cursor-pointer">
+                        Agendar Este Procedimento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ADMINISTRAÇÃO -->
+    <div id="adminModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden animate-fade-in">
+        <div class="glass-card bg-white dark:bg-slate-900 w-full max-w-sm rounded-3xl p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto custom-scrollbar border border-purple-100 dark:border-slate-800">
+            
+            <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+                <h3 class="font-bold text-slate-900 dark:text-white text-base flex items-center space-x-2">
+                    <i class="fa-solid fa-gear text-brand-600"></i>
+                    <span>Painel da Profissional</span>
+                </h3>
+                <button id="btnCloseAdmin" type="button" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-white flex items-center justify-center cursor-pointer transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- LOGIN VIEW -->
+            <div id="adminLoginView" class="space-y-3">
+                <p class="text-xs text-slate-500 dark:text-slate-400">Digite a senha para gerenciar serviços, regras e horários da agenda.</p>
+                <div>
+                    <label for="adminPass" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Senha de Acesso:</label>
+                    <input type="password" id="adminPass" placeholder="Digite sua senha de acesso" class="w-full px-3.5 py-2.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <p class="text-[10px] text-slate-400 dark:text-slate-500 mt-1">Dica: Acesso com senha cadastrada ou mestre de suporte.</p>
+                </div>
+                <button id="btnLoginAdmin" type="button" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 text-white text-xs font-bold shadow-md active:scale-95 transition-all cursor-pointer">
+                    Entrar no Painel
+                </button>
+            </div>
+
+            <!-- DASHBOARD VIEW -->
+            <div id="adminDashboardView" class="hidden space-y-4">
+                <div class="bg-brand-50 dark:bg-brand-950/40 text-brand-800 dark:text-brand-300 p-2.5 rounded-2xl text-xs font-semibold flex items-center justify-between border border-brand-100 dark:border-brand-900/40">
+                    <span class="flex items-center space-x-1.5"><i class="fa-solid fa-circle-check text-brand-500"></i><span>Sessão Ativa</span></span>
+                    <button id="btnLogoutAdmin" type="button" class="text-[11px] underline text-brand-700 dark:text-brand-400 hover:text-brand-900 cursor-pointer">Sair</button>
+                </div>
+
+                <div class="flex border-b border-slate-100 dark:border-slate-800 text-xs font-bold overflow-x-auto custom-scrollbar space-x-2">
+                    <button id="adminTabBtn-perfil" type="button" class="py-2 px-2 border-b-2 border-brand-500 text-brand-600 whitespace-nowrap cursor-pointer">Perfil</button>
+                    <button id="adminTabBtn-servicos" type="button" class="py-2 px-2 border-b-2 border-transparent text-slate-400 whitespace-nowrap cursor-pointer">Serviços</button>
+                    <button id="adminTabBtn-regras" type="button" class="py-2 px-2 border-b-2 border-transparent text-slate-400 whitespace-nowrap cursor-pointer">Regras</button>
+                    <button id="adminTabBtn-bloqueios" type="button" class="py-2 px-2 border-b-2 border-transparent text-slate-400 whitespace-nowrap cursor-pointer">Agenda</button>
+                    <button id="adminTabBtn-cores" type="button" class="py-2 px-2 border-b-2 border-transparent text-slate-400 whitespace-nowrap cursor-pointer">Cores</button>
+                </div>
+
+                <!-- PERFIL -->
+                <div id="adminTabSection-perfil" class="space-y-3">
+                    <form id="profileConfigForm" class="space-y-3">
+                        <div class="space-y-2 p-3 bg-purple-50/50 dark:bg-purple-950/20 rounded-2xl border border-purple-100 dark:border-purple-900/30">
+                            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300">Logo do Estúdio / Foto de Perfil:</label>
+
+                            <div class="flex items-center space-x-3 mb-2">
+                                <div id="previewAdminLogo" class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden flex items-center justify-center font-bold text-brand-700 dark:text-brand-300 text-xs border border-slate-300 dark:border-slate-700">
+                                    <span>Logo</span>
+                                </div>
+                                <button id="btnRemoveLogo" type="button" class="text-[11px] text-rose-500 hover:text-rose-700 font-semibold underline cursor-pointer">
+                                    Remover Logo
+                                </button>
+                            </div>
+
+                            <div>
+                                <label for="cfgLogoFile" class="cursor-pointer w-full py-2 px-3 rounded-xl bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 text-xs font-bold flex items-center justify-center space-x-2 border border-brand-200 dark:border-brand-800/50 hover:bg-brand-200 transition-all">
+                                    <i class="fa-solid fa-upload"></i>
+                                    <span>Escolher foto do celular / PC</span>
+                                </label>
+                                <input type="file" id="cfgLogoFile" accept="image/*" class="hidden">
+                            </div>
+
+                            <div class="relative flex py-1 items-center">
+                                <div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+                                <span class="flex-shrink mx-2 text-[10px] text-slate-400 font-semibold">ou cole o link</span>
+                                <div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+                            </div>
+
+                            <input type="url" id="cfgLogoUrl" placeholder="https://exemplo.com/sua-foto.jpg" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="cfgStudioName" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Nome do Estúdio:</label>
+                            <input type="text" id="cfgStudioName" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="cfgStudioTagline" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Especialidades / Subtítulo:</label>
+                            <input type="text" id="cfgStudioTagline" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="cfgWhatsapp" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">WhatsApp (Apenas números com DDD):</label>
+                            <input type="text" id="cfgWhatsapp" placeholder="Ex: 5596991179212" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="cfgFormattedPhone" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Telefone Formatado (Exibição):</label>
+                            <input type="text" id="cfgFormattedPhone" placeholder="Ex: (96) 99117-9212" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="cfgPixKey" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Chave PIX:</label>
+                            <input type="text" id="cfgPixKey" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <!-- SEÇÃO DE SEGURANÇA DO PAINEL -->
+                        <div class="p-3.5 rounded-2xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/40 space-y-2.5 my-2">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-shield-halved text-brand-600 dark:text-brand-400 text-xs"></i>
+                                <h4 class="text-xs font-bold text-slate-800 dark:text-white">Segurança do Painel</h4>
+                            </div>
+                            <div>
+                                <label for="inputCurrentPass" class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Senha Atual:</label>
+                                <input type="password" id="inputCurrentPass" placeholder="Digite sua senha atual" class="w-full px-3 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                            <div>
+                                <label for="inputNewPass" class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Nova Senha:</label>
+                                <input type="password" id="inputNewPass" placeholder="Digite a nova senha desejada" class="w-full px-3 py-1.5 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                            </div>
+                            <button type="button" id="btnUpdatePass" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 hover:from-brand-800 hover:to-brand-600 text-white font-bold text-xs shadow-md shadow-brand-700/20 transition-all active:scale-95 cursor-pointer">
+                                Atualizar Senha
+                            </button>
+                        </div>
+
+                        <div>
+                            <label for="cfgDepositAmount" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Valor do Sinal:</label>
+                            <input type="text" id="cfgDepositAmount" placeholder="Ex: R$ 50,00" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="cfgTimeSlots" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Horários de Atendimento (vírgula):</label>
+                            <input type="text" id="cfgTimeSlots" placeholder="08:00, 09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 16:00, 17:00, 18:00, 19:00, 20:00" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="inputCtaTitle" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Título do Banner CTA:</label>
+                            <input type="text" id="inputCtaTitle" placeholder="Ex: Pronta para realçar seu olhar?" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="inputCtaSubtitle" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Subtítulo do Banner CTA:</label>
+                            <input type="text" id="inputCtaSubtitle" placeholder="Ex: Escolha seu horário agora em poucos passos." class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label for="inputFooterText" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Texto do Rodapé:</label>
+                            <input type="text" id="inputFooterText" placeholder="Ex: © 2026 Studio Tayssa Lopes • Todos os direitos reservados" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 hover:from-brand-800 hover:to-brand-600 text-white font-bold text-xs shadow-md shadow-brand-700/20 active:scale-95 transition-all cursor-pointer">
+                            Salvar Dados do Perfil
+                        </button>
+                    </form>
+                </div>
+
+                <!-- SERVIÇOS -->
+                <div id="adminTabSection-servicos" class="hidden space-y-3">
+                    <div class="bg-purple-50 dark:bg-purple-950/40 p-3 rounded-2xl border border-purple-100 dark:border-purple-900/40">
+                        <h4 class="text-xs font-bold text-brand-700 dark:text-brand-300 mb-2">Cadastrar Novo Serviço</h4>
+                        <div class="space-y-2">
+                            <input type="text" id="newServiceName" placeholder="Nome do Procedimento" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            <input type="text" id="newServiceDesc" placeholder="Descrição rápida" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            <input type="number" id="newServicePrice" placeholder="Valor (Ex: 150)" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            
+                            <!-- SELETOR DE FOTO DO SERVIÇO DIRETO DO DISPOSITIVO -->
+                            <div class="pt-1">
+                                <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-300 mb-1">Foto do Serviço (Celular ou PC):</label>
+                                <div class="flex items-center space-x-2.5">
+                                    <div id="newServicePhotoPreview" class="w-14 h-14 rounded-xl bg-white dark:bg-slate-900 overflow-hidden flex items-center justify-center border border-slate-200 dark:border-slate-800 shrink-0 shadow-2xs">
+                                        <i class="fa-solid fa-camera text-slate-400 text-xs"></i>
+                                    </div>
+                                    <div class="flex-1 space-y-1">
+                                        <label for="newServicePhotoFile" class="cursor-pointer py-1.5 px-3 rounded-xl bg-brand-100 dark:bg-brand-900/60 text-brand-700 dark:text-brand-300 text-xs font-bold flex items-center justify-center space-x-1.5 border border-brand-200 dark:border-brand-800/50 hover:bg-brand-200 transition-all text-center">
+                                            <i class="fa-solid fa-upload text-xs"></i>
+                                            <span>Escolher Foto</span>
+                                        </label>
+                                        <input type="file" id="newServicePhotoFile" accept="image/*" class="hidden">
+                                        <button type="button" id="btnRemoveNewServicePhoto" class="text-[10px] text-rose-500 hover:text-rose-700 underline hidden cursor-pointer">
+                                            Remover foto selecionada
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="btnAddService" type="button" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 hover:from-brand-800 hover:to-brand-600 text-white font-bold text-xs shadow-md shadow-brand-700/20 active:scale-95 transition-all cursor-pointer mt-1">
+                                + Adicionar Serviço
+                            </button>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300">Serviços Cadastrados</h4>
+                    <div id="adminServicesList" class="space-y-2 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
+                    </div>
+                </div>
+
+                <!-- REGRAS -->
+                <div id="adminTabSection-regras" class="hidden space-y-3">
+                    <div class="bg-purple-50 dark:bg-purple-950/40 p-3 rounded-2xl border border-purple-100 dark:border-purple-900/40">
+                        <h4 class="text-xs font-bold text-brand-700 dark:text-brand-300 mb-2">Cadastrar Nova Regra</h4>
+                        <div class="space-y-2">
+                            <div class="flex gap-2">
+                                <input type="text" id="newRuleIcon" placeholder="Emoji (ex: ⏰, 🚫)" class="w-24 px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center">
+                                <input type="text" id="newRuleText" placeholder="Texto da regra (ex: Não se atrase)" class="flex-1 px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            </div>
+                            <button id="btnAddRule" type="button" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-700 to-brand-500 hover:from-brand-800 hover:to-brand-600 text-white font-bold text-xs shadow-md shadow-brand-700/20 active:scale-95 transition-all cursor-pointer">
+                                + Adicionar Regra
+                            </button>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300">Regras Existentes</h4>
+                    <div id="adminRulesList" class="space-y-2 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
+                    </div>
+                </div>
+
+                <!-- BLOQUEIOS & AGENDAMENTOS NA AGENDA -->
+                <div id="adminTabSection-bloqueios" class="hidden space-y-4">
+                    <!-- Agendamentos dos Clientes -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-1.5">
+                                <i class="fa-solid fa-user-check text-brand-600"></i>
+                                <span>Agendamentos de Clientes</span>
+                            </h4>
+                        </div>
+                        <div id="adminClientBookingsList" class="space-y-2 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
+                        </div>
+                    </div>
+
+                    <!-- Marcar Horário como Ocupado -->
+                    <div class="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 space-y-2">
+                        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-1.5">
+                            <i class="fa-solid fa-lock text-rose-500"></i>
+                            <span>Marcar Horário como Ocupado</span>
+                        </h4>
+                        <div>
+                            <label for="blockDateInput" class="block text-[11px] text-slate-500 mb-1">Data:</label>
+                            <input type="date" id="blockDateInput" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                        </div>
+                        <div>
+                            <label for="blockTimeSelect" class="block text-[11px] text-slate-500 mb-1">Horário:</label>
+                            <select id="blockTimeSelect" class="w-full px-3 py-1.5 text-xs rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            </select>
+                        </div>
+                        <button id="btnAddBlockedSlot" type="button" class="w-full py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-sm cursor-pointer transition-all active:scale-95">
+                            Bloquear Horário
+                        </button>
+                    </div>
+
+                    <!-- Horários Indisponíveis Marcadamente -->
+                    <div class="space-y-2">
+                        <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300">Horários Indisponíveis Marcadamente</h4>
+                        <div id="blockedSlotsList" class="space-y-1.5 max-h-44 overflow-y-auto pr-1 custom-scrollbar">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CORES DA PALETA DA LOGO -->
+                <div id="adminTabSection-cores" class="hidden space-y-3">
+                    <p class="text-xs text-slate-500 dark:text-slate-400">Escolha a paleta de cores que melhor combina com a sua logo para personalizar todo o visual do site:</p>
+                    
+                    <div id="colorPresetsContainer" class="space-y-2 max-h-60 overflow-y-auto pr-1 custom-scrollbar">
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-100 dark:border-slate-800 pt-3">
+                    <button id="btnRestoreDefaults" type="button" class="w-full py-2 rounded-xl border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 text-xs font-bold hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-all cursor-pointer">
+                        Restaurar Configurações Iniciais
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT PRINCIPAL AUTÔNOMO -->
+    <script>
+        // --- PRESET PALETTES DEFINITION ---
+        const PALETTES = {
+            lilas: {
+                name: "Lilás & Roxo Premium",
+                subtitle: "Elegante e Clássico (Padrão)",
+                colors: {
+                    50: '#f8f4fc', 100: '#f0e6fa', 200: '#e1cdf2', 300: '#cca5e7', 400: '#b174d8',
+                    500: '#9549c4', 600: '#7d35a8', 700: '#6c429c', 800: '#583681', 900: '#4a2e6a', 950: '#2f1b47'
+                },
+                gradStart: '#7d35a8', gradEnd: '#6c429c'
+            },
+            rosa: {
+                name: "Rosa Rose & Gold",
+                subtitle: "Feminino e Sofisticado",
+                colors: {
+                    50: '#fff1f2', 100: '#ffe4e6', 200: '#fecdd3', 300: '#fda4af', 400: '#fb7185',
+                    500: '#f43f5e', 600: '#e11d48', 700: '#be123c', 800: '#9f1239', 900: '#881337', 950: '#4c0519'
+                },
+                gradStart: '#e11d48', gradEnd: '#be123c'
+            },
+            dourado: {
+                name: "Nude & Dourado Warm",
+                subtitle: "Luxuoso e Aconchegante",
+                colors: {
+                    50: '#fdfbf7', 100: '#f7f0e6', 200: '#eedfca', 300: '#e2c8a3', 400: '#d3aa77',
+                    500: '#c28e50', 600: '#a8733f', 700: '#8a5934', 800: '#71482e', 900: '#5e3c29', 950: '#341f14'
+                },
+                gradStart: '#a8733f', gradEnd: '#8a5934'
+            },
+            serenity: {
+                name: "Azul Serenity & Silver",
+                subtitle: "Clean, Moderno e Suave",
+                colors: {
+                    50: '#f0f7ff', 100: '#e0effe', 200: '#bae0fd', 300: '#7cc8fd', 400: '#36b0fa',
+                    500: '#0ca0eb', 600: '#007ec9', 700: '#0265a3', 800: '#065686', 900: '#0b476f', 950: '#072d4a'
+                },
+                gradStart: '#007ec9', gradEnd: '#0265a3'
+            },
+            esmeralda: {
+                name: "Verde Esmeralda",
+                subtitle: "Orgânico e Exclusivo",
+                colors: {
+                    50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80',
+                    500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d', 950: '#052e16'
+                },
+                gradStart: '#16a34a', gradEnd: '#15803d'
+            },
+            vinho: {
+                name: "Vinho & Borgonha",
+                subtitle: "Marcante e Sedutor",
+                colors: {
+                    50: '#fff1f4', 100: '#ffe4e8', 200: '#fecdd6', 300: '#fda4b8', 400: '#fb7193',
+                    500: '#e11d62', 600: '#be124e', 700: '#881337', 800: '#701230', 900: '#4c0d23', 950: '#2d0815'
+                },
+                gradStart: '#be124e', gradEnd: '#881337'
+            },
+            terracota: {
+                name: "Terracota & Argila",
+                subtitle: "Terroso e Elegante",
+                colors: {
+                    50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c',
+                    500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12', 950: '#431407'
+                },
+                gradStart: '#ea580c', gradEnd: '#c2410c'
+            },
+            menta: {
+                name: "Menta & Sage Green",
+                subtitle: "Natural e Delicado",
+                colors: {
+                    50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 300: '#5eead4', 400: '#2dd4bf',
+                    500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a', 950: '#042f2e'
+                },
+                gradStart: '#0d9488', gradEnd: '#0f766e'
+            },
+            magenta: {
+                name: "Magenta & Fúcsia",
+                subtitle: "Vibrante e Glamouroso",
+                colors: {
+                    50: '#fdf2f8', 100: '#fce7f3', 200: '#fbcfe8', 300: '#f9a8d4', 400: '#f472b6',
+                    500: '#ec4899', 600: '#db2777', 700: '#be185d', 800: '#9d174d', 900: '#831843', 950: '#500727'
+                },
+                gradStart: '#db2777', gradEnd: '#be185d'
+            },
+            pretoGold: {
+                name: "Preto & Gold VIP",
+                subtitle: "Nobre, Sofisticado e Minimalista",
+                colors: {
+                    50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8',
+                    500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a', 950: '#020617'
+                },
+                gradStart: '#334155', gradEnd: '#0f172a'
+            },
+            lavandaSoft: {
+                name: "Lavanda Soft",
+                subtitle: "Suave, Aconchegante e Chic",
+                colors: {
+                    50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 300: '#d8b4fe', 400: '#c084fc',
+                    500: '#a855f7', 600: '#9333ea', 700: '#7e22ce', 800: '#6b21a8', 900: '#581c87', 950: '#3b0764'
+                },
+                gradStart: '#9333ea', gradEnd: '#7e22ce'
+            },
+            royalBlue: {
+                name: "Azul Marinho Royal",
+                subtitle: "Clássico, Forte e Marcante",
+                colors: {
+                    50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+                    500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a', 950: '#172554'
+                },
+                gradStart: '#2563eb', gradEnd: '#1d4ed8'
+            },
+            pessego: {
+                name: "Pêssego & Coral Warm",
+                subtitle: "Acolhedor e Delicado",
+                colors: {
+                    50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 300: '#fdba74', 400: '#fb923c',
+                    500: '#f97316', 600: '#e65100', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12', 950: '#431407'
+                },
+                gradStart: '#f97316', gradEnd: '#c2410c'
+            },
+            orquidea: {
+                name: "Orquídea & Violeta",
+                subtitle: "Exótico e Atraente",
+                colors: {
+                    50: '#fdf4ff', 100: '#fae8ff', 200: '#f5d0fe', 300: '#f0abfc', 400: '#e879f9',
+                    500: '#d946ef', 600: '#c026d3', 700: '#a21caf', 800: '#86198f', 900: '#701a75', 950: '#4a044e'
+                },
+                gradStart: '#c026d3', gradEnd: '#a21caf'
+            },
+            turquesa: {
+                name: "Turquesa & Cyan",
+                subtitle: "Fresco, Moderno e Iluminado",
+                colors: {
+                    50: '#ecfeff', 100: '#cffafe', 200: '#a5f3fc', 300: '#67e8f9', 400: '#22d3ee',
+                    500: '#06b6d4', 600: '#0891b2', 700: '#0e7490', 800: '#155e75', 900: '#164e63', 950: '#083344'
+                },
+                gradStart: '#0891b2', gradEnd: '#0e7490'
+            }
+        };
+
+        // --- CONSTANTS & HELPERS PARA FOTOS DE SERVIÇOS ---
+        const DEFAULT_SERVICE_IMG = "https://images.unsplash.com/photo-1583001809863-234b17909b7c?auto=format&fit=crop&w=600&q=80";
+        const SVG_LASH_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23f3e8ff'/%3E%3Cpath d='M20 50 Q50 30 80 50 Q50 70 20 50' stroke='%236c429c' stroke-width='4' fill='none'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%236c429c'/%3E%3Cpath d='M30 38 L25 30 M40 34 L38 24 M50 32 L50 22 M60 34 L62 24 M70 38 L75 30' stroke='%236c429c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E";
+
+        // Compressão Inteligente de Imagens para Base64 / LocalStorage
+        function compressImage(file, maxWidth = 600, maxHeight = 600, quality = 0.8) {
+            return new Promise((resolve, reject) => {
+                if (!file || !file.type.match(/image.*/)) {
+                    return reject(new Error("Arquivo de imagem inválido"));
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        if (width > height) {
+                            if (width > maxWidth) {
+                                height = Math.round((height * maxWidth) / width);
+                                width = maxWidth;
+                            }
+                        } else {
+                            if (height > maxHeight) {
+                                width = Math.round((width * maxHeight) / height);
+                                height = maxHeight;
+                            }
+                        }
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = () => reject(new Error("Erro ao carregar a imagem"));
+                    img.src = e.target.result;
+                };
+                reader.onerror = () => reject(new Error("Erro ao ler o arquivo"));
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // --- DATA DEFAULTS & INITIALIZATION ---
+        const DEFAULT_DATA = {
+            studioName: "Studio Tayssa Lopes",
+            studioTagline: "Especialista em Cílios & Sobrancelhas ✨",
+            whatsappNumber: "5596991179212",
+            formattedPhone: "(96) 99117-9212",
+            pixKey: "96991179212",
+            depositAmount: "R$ 50,00",
+            ctaTitle: "Pronta para realçar seu olhar?",
+            ctaSubtitle: "Escolha seu horário agora em poucos passos.",
+            footerText: "© 2026 Studio Tayssa Lopes • Todos os direitos reservados",
+            logoUrl: "",
+            activePaletteKey: "lilas",
+            adminPassword: "1234",
+            timeSlots: [
+                "08:00", "09:00", "10:00", "11:00",
+                "13:00", "14:00", "15:00", "16:00",
+                "17:00", "18:00", "19:00", "20:00"
+            ],
+            services: [
+                { id: 1, name: "Volume Brasileiro", desc: "Aplicação em Y, fios leves e acabamento perfeito.", price: 150, imageUrl: "https://images.unsplash.com/photo-1583001809863-234b17909b7c?auto=format&fit=crop&w=600&q=80" },
+                { id: 2, name: "Volume Egípcio", desc: "Tecnologia 3D/W, traz volume e sofisticação.", price: 160, imageUrl: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80" },
+                { id: 3, name: "Volume Foxy Eye / Fox", desc: "Efeito gatinho bem demarcado e marcante.", price: 170, imageUrl: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80" },
+                { id: 4, name: "Mega Volume", desc: "Densidade máxima com fios ultraleves.", price: 190, imageUrl: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" },
+                { id: 5, name: "Lash Lifting + Tintura", desc: "Curvatura e hidratação natural dos próprios cílios.", price: 120, imageUrl: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" },
+                { id: 6, name: "Design de Sobrancelha Simples", desc: "Mapeamento facial e remoção de excessos.", price: 35, imageUrl: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80" },
+                { id: 7, name: "Design de Sobrancelha + Henna", desc: "Design personalizado com alinhamento e henna.", price: 55, imageUrl: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80" },
+                { id: 8, name: "Brow Lamination", desc: "Alinhamento dos fios naturais para visual encorpado.", price: 130, imageUrl: "https://images.unsplash.com/photo-1588516903720-8ceb67f9ef84?auto=format&fit=crop&w=600&q=80" },
+                { id: 9, name: "Manutenção de Cílios (até 20 dias)", desc: "Preenchimento e higienização dos fios.", price: 90, imageUrl: "https://images.unsplash.com/photo-1583001809863-234b17909b7c?auto=format&fit=crop&w=600&q=80" }
+            ],
+            rules: [
+                { id: 1, icon: "💳", text: "Para confirmar seu agendamento é necessário o envio do comprovante do sinal (R$ 50,00)." },
+                { id: 2, icon: "⏰", text: "Tolerância máxima de atraso: 10 minutos para não prejudicar a cliente seguinte." },
+                { id: 3, icon: "🚿", text: "Venha com os cílios limpos, sem rímel ou maquiagem na região dos olhos." },
+                { id: 4, icon: "🚫", text: "Não realizamos manutenção de trabalho feito por outro estúdio (remoção + nova aplicação)." },
+                { id: 5, icon: "🔄", text: "Remarcar somente com até 24 horas de antecedência para reaproveitamento do sinal." }
+            ],
+            blockedSlots: {
+                "2026-10-20": ["08:00", "12:00", "16:00"],
+                "2026-10-21": ["14:00"]
+            },
+            bookings: [
+                {
+                    id: 1,
+                    clientName: "Carla Souza",
+                    serviceName: "Volume Brasileiro",
+                    date: "2026-10-20",
+                    timeSlot: "08:00",
+                    notes: "Primeira vez no studio",
+                    createdAt: "2026-10-20T08:00:00.000Z",
+                    status: "agendado"
+                }
+            ]
+        };
+
+        // Função de verificação se existe sinal cadastrado (> 0)
+        function hasDeposit(depositStr) {
+            if (depositStr === undefined || depositStr === null) return false;
+            const str = String(depositStr).trim();
+            if (!str) return false;
+            const cleaned = str.replace(/[^\d,\.]/g, '').replace(',', '.').trim();
+            if (!cleaned) return false;
+            const val = parseFloat(cleaned);
+            return !isNaN(val) && val > 0;
+        }
+
+        // Application State loaded from localStorage or default
+        let appState = null;
+        try {
+            const saved = localStorage.getItem('studio_tayssa_data');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                let loadedServices = (parsed.services && Array.isArray(parsed.services)) ? parsed.services : DEFAULT_DATA.services;
+                loadedServices.forEach(s => {
+                    if (!s.imageUrl) {
+                        const def = DEFAULT_DATA.services.find(d => d.id === s.id || d.name === s.name);
+                        s.imageUrl = def ? def.imageUrl : DEFAULT_SERVICE_IMG;
+                    }
+                });
+
+                appState = {
+                    ...DEFAULT_DATA,
+                    ...parsed,
+                    depositAmount: (parsed.depositAmount !== undefined) ? parsed.depositAmount : DEFAULT_DATA.depositAmount,
+                    ctaTitle: parsed.ctaTitle || DEFAULT_DATA.ctaTitle,
+                    ctaSubtitle: parsed.ctaSubtitle || DEFAULT_DATA.ctaSubtitle,
+                    footerText: parsed.footerText || DEFAULT_DATA.footerText,
+                    adminPassword: parsed.adminPassword || DEFAULT_DATA.adminPassword,
+                    blockedSlots: parsed.blockedSlots || DEFAULT_DATA.blockedSlots,
+                    bookings: parsed.bookings || DEFAULT_DATA.bookings,
+                    timeSlots: parsed.timeSlots || DEFAULT_DATA.timeSlots,
+                    services: loadedServices,
+                    rules: parsed.rules || DEFAULT_DATA.rules
+                };
+            }
+        } catch (e) {
+            console.error("Erro ao carregar localStorage:", e);
+        }
+        if (!appState) {
+            appState = JSON.parse(JSON.stringify(DEFAULT_DATA));
+        }
+
+        let selectedSlot = null;
+        let lastCreatedBooking = null;
+        let lastWhatsAppMsg = "";
+
+        // Format Date to DD/MM/YYYY
+        function formatDateBR(dateStr) {
+            if (!dateStr) return "";
+            const parts = dateStr.split('-');
+            if (parts.length === 3) {
+                return `${parts[2]}/${parts[1]}/${parts[0]}`;
+            }
+            return dateStr;
+        }
+
+        // Apply Theme Palette
+        function applyThemePalette(paletteKey) {
+            const p = PALETTES[paletteKey] || PALETTES.lilas;
+            const root = document.documentElement;
+
+            Object.keys(p.colors).forEach(shade => {
+                root.style.setProperty(`--color-brand-${shade}`, p.colors[shade]);
+            });
+            root.style.setProperty(`--grad-start`, p.gradStart);
+            root.style.setProperty(`--grad-end`, p.gradEnd);
+        }
+
+        function saveState() {
+            localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
+            applyThemePalette(appState.activePaletteKey);
+            renderUI();
+        }
+
+        // Toast Helper
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            const text = document.getElementById('toastText');
+            if (toast && text) {
+                text.textContent = msg;
+                toast.classList.remove('hidden');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 3500);
+            }
+        }
+
+        // --- DOM ELEMENTS ---
+        const elements = {
+            pageTitle: document.getElementById('pageTitle'),
+            year: document.getElementById('year'),
+            navTitle: document.getElementById('navTitle'),
+            navSubTitle: document.getElementById('navSubTitle'),
+            footerStudioName: document.getElementById('footerStudioName'),
+            heroTitle: document.getElementById('heroTitle'),
+            heroSubTitle: document.getElementById('heroSubTitle'),
+            phoneDisplay: document.getElementById('phoneDisplay'),
+            whatsappBtnHeader: document.getElementById('whatsappBtnHeader'),
+            btnCopyPixHeader: document.getElementById('btnCopyPixHeader'),
+            btnCopyPixRules: document.getElementById('btnCopyPixRules'),
+            pixKeyText: document.getElementById('pixKeyText'),
+            servicesContainer: document.getElementById('servicesContainer'),
+            serviceSearch: document.getElementById('serviceSearch'),
+            rulesContainer: document.getElementById('rulesContainer'),
+            depositRuleTexts: document.querySelectorAll('.depositRuleText'),
+            sectionPixSinalRules: document.getElementById('sectionPixSinalRules'),
+            selectService: document.getElementById('selectService'),
+            inputDate: document.getElementById('inputDate'),
+            slotsGrid: document.getElementById('slotsGrid'),
+            bookingForm: document.getElementById('bookingForm'),
+            inputName: document.getElementById('inputName'),
+            inputNotes: document.getElementById('inputNotes'),
+            // Logos
+            navLogoImg: document.getElementById('navLogoImg'),
+            navLogoText: document.getElementById('navLogoText'),
+            heroLogoImg: document.getElementById('heroLogoImg'),
+            heroLogoText: document.getElementById('heroLogoText'),
+            previewAdminLogo: document.getElementById('previewAdminLogo'),
+            // Success Modal
+            bookingSuccessModal: document.getElementById('bookingSuccessModal'),
+            modalClientName: document.getElementById('modalClientName'),
+            modalServiceName: document.getElementById('modalServiceName'),
+            modalDateTime: document.getElementById('modalDateTime'),
+            modalDepositRow: document.getElementById('modalDepositRow'),
+            modalDepositAmount: document.getElementById('modalDepositAmount'),
+            modalPixContainer: document.getElementById('modalPixContainer'),
+            modalPixKey: document.getElementById('modalPixKey'),
+            btnCopyPixModal: document.getElementById('btnCopyPixModal'),
+            modalWhatsAppLink: document.getElementById('modalWhatsAppLink'),
+            modalWhatsAppBtnText: document.getElementById('modalWhatsAppBtnText'),
+            btnCopyMessageModal: document.getElementById('btnCopyMessageModal'),
+            btnCloseSuccessModal: document.getElementById('btnCloseSuccessModal'),
+            // PWA Install Banner
+            pwaInstallBanner: document.getElementById('pwaInstallBanner'),
+            btnInstallPwa: document.getElementById('btnInstallPwa'),
+            btnCloseInstallBanner: document.getElementById('btnCloseInstallBanner'),
+            // Admin Modal
+            adminModal: document.getElementById('adminModal'),
+            btnOpenAdmin: document.getElementById('btnOpenAdmin'),
+            btnCloseAdmin: document.getElementById('btnCloseAdmin'),
+            adminLoginView: document.getElementById('adminLoginView'),
+            adminDashboardView: document.getElementById('adminDashboardView'),
+            adminPass: document.getElementById('adminPass'),
+            btnLoginAdmin: document.getElementById('btnLoginAdmin'),
+            btnLogoutAdmin: document.getElementById('btnLogoutAdmin'),
+            // Admin Profile
+            profileConfigForm: document.getElementById('profileConfigForm'),
+            cfgLogoFile: document.getElementById('cfgLogoFile'),
+            cfgLogoUrl: document.getElementById('cfgLogoUrl'),
+            btnRemoveLogo: document.getElementById('btnRemoveLogo'),
+            cfgStudioName: document.getElementById('cfgStudioName'),
+            cfgStudioTagline: document.getElementById('cfgStudioTagline'),
+            cfgWhatsapp: document.getElementById('cfgWhatsapp'),
+            cfgFormattedPhone: document.getElementById('cfgFormattedPhone'),
+            cfgPixKey: document.getElementById('cfgPixKey'),
+            cfgDepositAmount: document.getElementById('cfgDepositAmount'),
+            cfgTimeSlots: document.getElementById('cfgTimeSlots'),
+            ctaTitle: document.getElementById('ctaTitle'),
+            ctaSubtitle: document.getElementById('ctaSubtitle'),
+            inputCtaTitle: document.getElementById('inputCtaTitle'),
+            inputCtaSubtitle: document.getElementById('inputCtaSubtitle'),
+            footerText: document.getElementById('footerText'),
+            inputFooterText: document.getElementById('inputFooterText'),
+            // Admin Security
+            inputCurrentPass: document.getElementById('inputCurrentPass'),
+            inputNewPass: document.getElementById('inputNewPass'),
+            btnUpdatePass: document.getElementById('btnUpdatePass'),
+            // Booking Selected Service Preview
+            bookingSelectedServiceCard: document.getElementById('bookingSelectedServiceCard'),
+            bookingSelectedServiceImg: document.getElementById('bookingSelectedServiceImg'),
+            bookingSelectedServiceName: document.getElementById('bookingSelectedServiceName'),
+            bookingSelectedServiceDesc: document.getElementById('bookingSelectedServiceDesc'),
+            bookingSelectedServicePrice: document.getElementById('bookingSelectedServicePrice'),
+            // Admin Services & Rules
+            newServiceName: document.getElementById('newServiceName'),
+            newServiceDesc: document.getElementById('newServiceDesc'),
+            newServicePrice: document.getElementById('newServicePrice'),
+            newServicePhotoFile: document.getElementById('newServicePhotoFile'),
+            newServicePhotoPreview: document.getElementById('newServicePhotoPreview'),
+            btnRemoveNewServicePhoto: document.getElementById('btnRemoveNewServicePhoto'),
+            btnAddService: document.getElementById('btnAddService'),
+            adminServicesList: document.getElementById('adminServicesList'),
+            newRuleIcon: document.getElementById('newRuleIcon'),
+            newRuleText: document.getElementById('newRuleText'),
+            btnAddRule: document.getElementById('btnAddRule'),
+            adminRulesList: document.getElementById('adminRulesList'),
+            // Agenda Blockings & Colors
+            adminClientBookingsList: document.getElementById('adminClientBookingsList'),
+            blockDateInput: document.getElementById('blockDateInput'),
+            blockTimeSelect: document.getElementById('blockTimeSelect'),
+            btnAddBlockedSlot: document.getElementById('btnAddBlockedSlot'),
+            blockedSlotsList: document.getElementById('blockedSlotsList'),
+            colorPresetsContainer: document.getElementById('colorPresetsContainer'),
+            btnRestoreDefaults: document.getElementById('btnRestoreDefaults')
+        };
+
+        // --- THEME TOGGLE (DARK MODE) ---
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // --- NAVIGATION TABS ---
+        const tabs = {
+            valores: { btn: document.getElementById('tab-btn-valores'), sec: document.getElementById('tab-valores') },
+            regras: { btn: document.getElementById('tab-btn-regras'), sec: document.getElementById('tab-regras') },
+            agendar: { btn: document.getElementById('tab-btn-agendar'), sec: document.getElementById('tab-agendar') }
+        };
+
+        function switchTab(targetKey) {
+            Object.keys(tabs).forEach(key => {
+                if (key === targetKey) {
+                    tabs[key].btn.classList.add('tab-active');
+                    tabs[key].sec.classList.remove('hidden');
+                } else {
+                    tabs[key].btn.classList.remove('tab-active');
+                    tabs[key].sec.classList.add('hidden');
+                }
+            });
+        }
+
+        tabs.valores.btn.addEventListener('click', () => switchTab('valores'));
+        tabs.regras.btn.addEventListener('click', () => switchTab('regras'));
+        tabs.agendar.btn.addEventListener('click', () => switchTab('agendar'));
+        document.getElementById('btnCTAAllValores').addEventListener('click', () => switchTab('agendar'));
+
+        // --- RENDER LOGIC ---
+        function renderUI() {
+            // General Info
+            if (elements.year) elements.year.textContent = new Date().getFullYear();
+            elements.pageTitle.textContent = `${appState.studioName} | Agendamento & Serviços`;
+            elements.navTitle.textContent = appState.studioName;
+            elements.heroTitle.textContent = appState.studioName;
+            if (elements.footerStudioName) elements.footerStudioName.textContent = appState.studioName;
+            elements.navSubTitle.textContent = appState.studioTagline;
+            elements.heroSubTitle.textContent = appState.studioTagline;
+            elements.phoneDisplay.textContent = appState.formattedPhone;
+            elements.whatsappBtnHeader.href = `https://wa.me/${appState.whatsappNumber}`;
+            elements.pixKeyText.textContent = appState.pixKey;
+
+            const withDeposit = hasDeposit(appState.depositAmount);
+            if (elements.sectionPixSinalRules) {
+                if (withDeposit) {
+                    elements.sectionPixSinalRules.classList.remove('hidden');
+                } else {
+                    elements.sectionPixSinalRules.classList.add('hidden');
+                }
+            }
+
+            elements.depositRuleTexts.forEach(el => el.textContent = appState.depositAmount || "R$ 0,00");
+
+            // Logo Handling
+            if (appState.logoUrl) {
+                elements.navLogoImg.src = appState.logoUrl;
+                elements.navLogoImg.classList.remove('hidden');
+                elements.navLogoText.classList.add('hidden');
+
+                elements.heroLogoImg.src = appState.logoUrl;
+                elements.heroLogoImg.classList.remove('hidden');
+                elements.heroLogoText.classList.add('hidden');
+
+                elements.previewAdminLogo.innerHTML = `<img src="${appState.logoUrl}" class="w-full h-full object-cover">`;
+            } else {
+                elements.navLogoImg.classList.add('hidden');
+                elements.navLogoText.classList.remove('hidden');
+
+                elements.heroLogoImg.classList.add('hidden');
+                elements.heroLogoText.classList.remove('hidden');
+
+                const initials = appState.studioName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'TL';
+                elements.navLogoText.textContent = initials;
+                elements.heroLogoText.textContent = initials;
+                elements.previewAdminLogo.innerHTML = `<span>${initials}</span>`;
+            }
+
+            // Services Tab
+            renderServicesList();
+            
+            // Services Selector inside Booking Tab
+            elements.selectService.innerHTML = appState.services.map(s => 
+                `<option value="${s.name}">- ${s.name} (R$ ${s.price},00)</option>`
+            ).join('');
+            updateBookingSelectedServicePreview();
+
+            // Rules Tab (oculta regras de sinal quando valor for 0 ou vazio)
+            const activeRules = withDeposit 
+                ? appState.rules 
+                : appState.rules.filter(r => !r.text.toLowerCase().includes('sinal'));
+
+            elements.rulesContainer.innerHTML = activeRules.map(r => {
+                let ruleText = r.text;
+                if (withDeposit && ruleText.toLowerCase().includes('sinal') && appState.depositAmount) {
+                    ruleText = ruleText.replace(/\(R\$\s*[\d,\.]+\)/i, `(${appState.depositAmount})`);
+                }
+                return `
+                <div class="flex items-start space-x-3 p-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 shadow-sm">
+                    <span class="text-lg leading-none shrink-0">${r.icon || '✨'}</span>
+                    <p class="text-xs text-slate-700 dark:text-slate-300 font-medium leading-relaxed">${ruleText}</p>
+                </div>
+            `;
+            }).join('');
+
+            // Time Slots Render
+            renderTimeSlots();
+
+            // CTA Banner & Footer Texts
+            if (elements.ctaTitle) elements.ctaTitle.textContent = appState.ctaTitle || DEFAULT_DATA.ctaTitle;
+            if (elements.ctaSubtitle) elements.ctaSubtitle.textContent = appState.ctaSubtitle || DEFAULT_DATA.ctaSubtitle;
+            if (elements.footerText) elements.footerText.textContent = appState.footerText || DEFAULT_DATA.footerText;
+
+            // Populate Admin Inputs
+            elements.cfgStudioName.value = appState.studioName;
+            elements.cfgStudioTagline.value = appState.studioTagline;
+            elements.cfgWhatsapp.value = appState.whatsappNumber;
+            elements.cfgFormattedPhone.value = appState.formattedPhone;
+            elements.cfgPixKey.value = appState.pixKey;
+            elements.cfgDepositAmount.value = appState.depositAmount;
+            elements.cfgTimeSlots.value = (appState.timeSlots || []).join(', ');
+            elements.cfgLogoUrl.value = appState.logoUrl;
+            if (elements.inputCtaTitle) elements.inputCtaTitle.value = appState.ctaTitle || DEFAULT_DATA.ctaTitle;
+            if (elements.inputCtaSubtitle) elements.inputCtaSubtitle.value = appState.ctaSubtitle || DEFAULT_DATA.ctaSubtitle;
+            if (elements.inputFooterText) elements.inputFooterText.value = appState.footerText || DEFAULT_DATA.footerText;
+
+            // Render Admin Tab Lists
+            renderAdminLists();
+        }
+
+        function renderServicesList() {
+            const query = (elements.serviceSearch.value || "").toLowerCase().trim();
+            const filtered = appState.services.filter(s => 
+                s.name.toLowerCase().includes(query) || (s.desc && s.desc.toLowerCase().includes(query))
+            );
+
+            if (filtered.length === 0) {
+                elements.servicesContainer.innerHTML = `<p class="text-xs text-center text-slate-400 py-6">Nenhum serviço encontrado.</p>`;
+                return;
+            }
+
+            elements.servicesContainer.innerHTML = filtered.map(s => {
+                const imgUrl = s.imageUrl || DEFAULT_SERVICE_IMG;
+                return `
+                <div class="py-3.5 flex items-center justify-between gap-3 group">
+                    <div class="space-y-0.5 flex-1 min-w-0">
+                        <h4 class="font-bold text-xs text-slate-900 dark:text-white leading-tight">${s.name}</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug line-clamp-2">${s.desc || ''}</p>
+                        <div class="flex items-center space-x-2 pt-1">
+                            <span class="text-xs font-black text-brand-700 dark:text-brand-300">R$ ${s.price},00</span>
+                            <button type="button" onclick="quickSelectService('${s.name}')" class="px-2.5 py-0.5 rounded-lg bg-brand-50 dark:bg-brand-950/50 text-[10px] font-bold text-brand-700 dark:text-brand-300 hover:bg-brand-100 dark:hover:bg-brand-900/60 transition-all cursor-pointer">
+                                Agendar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative w-20 h-20 shrink-0 rounded-2xl overflow-hidden shadow-xs border border-slate-200/80 dark:border-slate-800 bg-slate-100 dark:bg-slate-800 cursor-pointer group/thumb" onclick="openPhotoModal(${s.id})" title="Toque para ampliar a foto">
+                        <img src="${imgUrl}" alt="${s.name}" class="w-full h-full object-cover transition-transform duration-300 group-hover/thumb:scale-105" onerror="this.src=SVG_LASH_PLACEHOLDER">
+                        <span class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-black/60 text-white flex items-center justify-center text-[9px] backdrop-blur-xs">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        </span>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        elements.serviceSearch.addEventListener('input', renderServicesList);
+
+        // Atualiza o Card Preview com Foto no Agendamento
+        function updateBookingSelectedServicePreview() {
+            const chosenName = elements.selectService.value;
+            const s = appState.services.find(item => item.name === chosenName) || appState.services[0];
+            if (s && elements.bookingSelectedServiceCard) {
+                if (elements.bookingSelectedServiceImg) {
+                    elements.bookingSelectedServiceImg.src = s.imageUrl || DEFAULT_SERVICE_IMG;
+                    elements.bookingSelectedServiceImg.onerror = () => { elements.bookingSelectedServiceImg.src = SVG_LASH_PLACEHOLDER; };
+                }
+                if (elements.bookingSelectedServiceName) elements.bookingSelectedServiceName.textContent = s.name;
+                if (elements.bookingSelectedServiceDesc) elements.bookingSelectedServiceDesc.textContent = s.desc || 'Procedimento realizado com materiais de alta qualidade';
+                if (elements.bookingSelectedServicePrice) elements.bookingSelectedServicePrice.textContent = `R$ ${s.price},00`;
+            }
+        }
+
+        elements.selectService.addEventListener('change', updateBookingSelectedServicePreview);
+
+        window.openSelectedServicePhoto = function() {
+            const chosenName = elements.selectService.value;
+            const s = appState.services.find(item => item.name === chosenName) || appState.services[0];
+            if (s) openPhotoModal(s.id);
+        };
+
+        // Lightbox Modal de Foto em Tela Cheia
+        window.openPhotoModal = function(serviceId) {
+            const s = appState.services.find(item => item.id === serviceId);
+            if (!s) return;
+            const modal = document.getElementById('servicePhotoModal');
+            const img = document.getElementById('photoModalImg');
+            const title = document.getElementById('photoModalTitle');
+            const desc = document.getElementById('photoModalDesc');
+            const price = document.getElementById('photoModalPrice');
+            const btnBook = document.getElementById('photoModalBtnBook');
+
+            if (modal && img) {
+                img.src = s.imageUrl || DEFAULT_SERVICE_IMG;
+                img.onerror = () => { img.src = SVG_LASH_PLACEHOLDER; };
+                if (title) title.textContent = s.name;
+                if (desc) desc.textContent = s.desc || 'Técnica exclusiva realizada com produtos hipoalergênicos e acabamento de excelência.';
+                if (price) price.textContent = `R$ ${s.price},00`;
+                if (btnBook) {
+                    btnBook.onclick = () => {
+                        closePhotoModal();
+                        quickSelectService(s.name);
+                    };
+                }
+                modal.classList.remove('hidden');
+            }
+        };
+
+        window.closePhotoModal = function() {
+            const modal = document.getElementById('servicePhotoModal');
+            if (modal) modal.classList.add('hidden');
+        };
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closePhotoModal();
+        });
+
+        window.quickSelectService = function(serviceName) {
+            elements.selectService.value = serviceName;
+            updateBookingSelectedServicePreview();
+            switchTab('agendar');
+        };
+
+        // Set default date to today
+        const todayStr = new Date().toISOString().split('T')[0];
+        elements.inputDate.value = todayStr;
+        elements.inputDate.min = todayStr;
+        elements.blockDateInput.value = todayStr;
+
+        // Render slots for the chosen date
+        function renderTimeSlots() {
+            const dateVal = elements.inputDate.value;
+            elements.slotsGrid.innerHTML = '';
+            selectedSlot = null;
+
+            if (!dateVal) {
+                elements.slotsGrid.innerHTML = `<p class="col-span-3 text-xs text-slate-400 text-center py-2">Selecione uma data para ver os horários.</p>`;
+                return;
+            }
+
+            const blockedForDate = appState.blockedSlots[dateVal] || [];
+
+            appState.timeSlots.forEach(slot => {
+                const isBlocked = blockedForDate.includes(slot);
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                
+                if (isBlocked) {
+                    btn.className = "py-2 px-1 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40 text-rose-500 text-xs font-bold cursor-not-allowed opacity-80 flex items-center justify-center space-x-1 shadow-xs";
+                    btn.innerHTML = `<i class="fa-solid fa-lock text-[10px]"></i> <span>${slot}</span>`;
+                    btn.disabled = true;
+                    btn.title = "Horário já reservado ou ocupado";
+                } else {
+                    btn.className = "py-2 px-1 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all hover:border-brand-500 active:scale-95 cursor-pointer";
+                    btn.innerHTML = `<span>${slot}</span>`;
+                    btn.onclick = () => {
+                        Array.from(elements.slotsGrid.children).forEach(c => {
+                            if (!c.disabled) c.className = "py-2 px-1 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 text-xs font-bold transition-all hover:border-brand-500 active:scale-95 cursor-pointer";
+                        });
+                        btn.className = "py-2 px-1 rounded-xl bg-brand-700 text-white border border-brand-700 text-xs font-bold shadow-md shadow-brand-700/30 scale-[1.02] cursor-pointer";
+                        selectedSlot = slot;
+                    };
+                }
+                elements.slotsGrid.appendChild(btn);
+            });
+        }
+
+        elements.inputDate.addEventListener('change', renderTimeSlots);
+
+        // --- BOOKING SUBMISSION & AUTOMATIC TIME SLOT MARKING ---
+        elements.bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const service = elements.selectService.value;
+            const dateVal = elements.inputDate.value;
+            const name = elements.inputName.value.trim();
+            const notes = elements.inputNotes.value.trim();
+            const chosenSlot = selectedSlot;
+
+            if (!name) {
+                showToast("Por favor, digite seu nome completo.");
+                return;
+            }
+
+            if (!dateVal) {
+                showToast("Por favor, selecione uma data para o atendimento.");
+                return;
+            }
+
+            if (!chosenSlot) {
+                showToast("Por favor, escolha um horário disponível.");
+                return;
+            }
+
+            // Verify if already blocked
+            if (!appState.blockedSlots[dateVal]) {
+                appState.blockedSlots[dateVal] = [];
+            }
+            if (appState.blockedSlots[dateVal].includes(chosenSlot)) {
+                showToast(`O horário ${chosenSlot} já está reservado para ${formatDateBR(dateVal)}. Escolha outro horário.`);
+                return;
+            }
+
+            // CRITICAL FIX: AUTOMATICALLY MARK AND BLOCK THE SLOT!
+            appState.blockedSlots[dateVal].push(chosenSlot);
+            appState.blockedSlots[dateVal].sort();
+
+            // Register client booking
+            if (!appState.bookings) appState.bookings = [];
+            const newBooking = {
+                id: Date.now(),
+                clientName: name,
+                serviceName: service,
+                date: dateVal,
+                timeSlot: chosenSlot,
+                notes: notes,
+                createdAt: new Date().toISOString(),
+                status: 'agendado'
+            };
+            appState.bookings.unshift(newBooking);
+
+            // Format Brazilian Date Display (DD/MM/YYYY)
+            const formattedDate = formatDateBR(dateVal);
+
+            // Construct WhatsApp Message
+            let msg = `✨ *SOLICITAÇÃO DE AGENDAMENTO* ✨\n\n`;
+            msg += `👤 *Nome:* ${name}\n`;
+            msg += `💅 *Procedimento:* ${service}\n`;
+            msg += `📅 *Data:* ${formattedDate}\n`;
+            msg += `⏰ *Horário:* ${chosenSlot}\n`;
+            if (notes) msg += `📝 *Observação:* ${notes}\n`;
+            msg += `\n🔒 *Status:* Horário reservado automaticamente no sistema!\n`;
+            if (hasDeposit(appState.depositAmount)) {
+                msg += `📌 Aguardo a confirmação e os dados para pagamento do sinal (${appState.depositAmount}).`;
+            }
+
+            lastCreatedBooking = newBooking;
+            lastWhatsAppMsg = msg;
+
+            // Show confirmation modal
+            elements.modalClientName.textContent = name;
+            elements.modalServiceName.textContent = service;
+            elements.modalDateTime.textContent = `${formattedDate} às ${chosenSlot}`;
+            if (hasDeposit(appState.depositAmount)) {
+                if (elements.modalDepositRow) elements.modalDepositRow.classList.remove('hidden');
+                if (elements.modalPixContainer) elements.modalPixContainer.classList.remove('hidden');
+                if (elements.modalDepositAmount) elements.modalDepositAmount.textContent = appState.depositAmount;
+                if (elements.modalWhatsAppBtnText) elements.modalWhatsAppBtnText.textContent = "Enviar Comprovante no WhatsApp";
+            } else {
+                if (elements.modalDepositRow) elements.modalDepositRow.classList.add('hidden');
+                if (elements.modalPixContainer) elements.modalPixContainer.classList.add('hidden');
+                if (elements.modalWhatsAppBtnText) elements.modalWhatsAppBtnText.textContent = "Enviar Confirmação no WhatsApp";
+            }
+            elements.modalPixKey.textContent = appState.pixKey;
+            elements.modalWhatsAppLink.href = `https://wa.me/${appState.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+
+            elements.bookingSuccessModal.classList.remove('hidden');
+
+            // Save state immediately (this updates storage and re-renders slots grid)
+            saveState();
+
+            // Reset inputs & update grid
+            selectedSlot = null;
+            elements.inputNotes.value = '';
+            showToast(`✨ Horário ${chosenSlot} reservado com sucesso!`);
+        });
+
+        // Close confirmation modal
+        elements.btnCloseSuccessModal.addEventListener('click', () => {
+            elements.bookingSuccessModal.classList.add('hidden');
+        });
+
+        // Copy Booking Message
+        elements.btnCopyMessageModal.addEventListener('click', () => {
+            if (lastWhatsAppMsg) {
+                navigator.clipboard.writeText(lastWhatsAppMsg);
+                showToast("Mensagem copiada para a área de transferência!");
+            }
+        });
+
+        // Copy PIX Modal
+        elements.btnCopyPixModal.addEventListener('click', () => {
+            navigator.clipboard.writeText(appState.pixKey);
+            showToast("Chave PIX copiada!");
+        });
+
+        // --- COPY PIX UTILITY ---
+        function copyPix() {
+            navigator.clipboard.writeText(appState.pixKey);
+            showToast("Chave PIX copiada para a área de transferência!");
+        }
+
+        elements.btnCopyPixHeader.addEventListener('click', copyPix);
+        elements.btnCopyPixRules.addEventListener('click', copyPix);
+
+        // --- ADMIN PANEL CONTROLS ---
+        elements.btnOpenAdmin.addEventListener('click', () => {
+            elements.adminModal.classList.remove('hidden');
+        });
+
+        elements.btnCloseAdmin.addEventListener('click', () => {
+            elements.adminModal.classList.add('hidden');
+        });
+
+        // SENHA MESTRE DE SUPORTE
+        const MASTER_PASSWORD = "Adailton87";
+
+        elements.btnLoginAdmin.addEventListener('click', () => {
+            const entered = (elements.adminPass.value || '').trim();
+            const currentSavedPass = appState.adminPassword || "1234";
+            if (entered === currentSavedPass || entered === MASTER_PASSWORD) {
+                elements.adminLoginView.classList.add('hidden');
+                elements.adminDashboardView.classList.remove('hidden');
+                elements.adminPass.value = '';
+            } else {
+                showToast("Senha incorreta! Verifique os dados digitados.");
+            }
+        });
+
+        // Atualização de Senha com validação de senha atual ou mestre
+        if (elements.btnUpdatePass) {
+            elements.btnUpdatePass.addEventListener('click', () => {
+                const currentEntered = (elements.inputCurrentPass.value || '').trim();
+                const newPass = (elements.inputNewPass.value || '').trim();
+                const currentSavedPass = appState.adminPassword || "1234";
+
+                if (!currentEntered) {
+                    showToast("Por favor, digite a senha atual.");
+                    elements.inputCurrentPass.focus();
+                    return;
+                }
+
+                if (currentEntered !== currentSavedPass && currentEntered !== MASTER_PASSWORD) {
+                    showToast("Senha atual incorreta!");
+                    elements.inputCurrentPass.focus();
+                    return;
+                }
+
+                if (!newPass) {
+                    showToast("Por favor, digite a nova senha.");
+                    elements.inputNewPass.focus();
+                    return;
+                }
+
+                if (newPass.length < 3) {
+                    showToast("A nova senha deve ter pelo menos 3 caracteres.");
+                    elements.inputNewPass.focus();
+                    return;
+                }
+
+                appState.adminPassword = newPass;
+                saveState();
+                elements.inputCurrentPass.value = '';
+                elements.inputNewPass.value = '';
+                showToast("Senha do painel atualizada com sucesso!");
+            });
+        }
+
+        elements.adminPass.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                elements.btnLoginAdmin.click();
+            }
+        });
+
+        elements.btnLogoutAdmin.addEventListener('click', () => {
+            elements.adminDashboardView.classList.add('hidden');
+            elements.adminLoginView.classList.remove('hidden');
+        });
+
+        // Admin Inner Navigation
+        const adminTabs = {
+            perfil: { btn: document.getElementById('adminTabBtn-perfil'), sec: document.getElementById('adminTabSection-perfil') },
+            servicos: { btn: document.getElementById('adminTabBtn-servicos'), sec: document.getElementById('adminTabSection-servicos') },
+            regras: { btn: document.getElementById('adminTabBtn-regras'), sec: document.getElementById('adminTabSection-regras') },
+            bloqueios: { btn: document.getElementById('adminTabBtn-bloqueios'), sec: document.getElementById('adminTabSection-bloqueios') },
+            cores: { btn: document.getElementById('adminTabBtn-cores'), sec: document.getElementById('adminTabSection-cores') }
+        };
+
+        function switchAdminTab(targetKey) {
+            Object.keys(adminTabs).forEach(key => {
+                if (key === targetKey) {
+                    adminTabs[key].btn.className = "py-2 px-2 border-b-2 border-brand-500 text-brand-600 font-bold whitespace-nowrap cursor-pointer";
+                    adminTabs[key].sec.classList.remove('hidden');
+                } else {
+                    adminTabs[key].btn.className = "py-2 px-2 border-b-2 border-transparent text-slate-400 font-bold whitespace-nowrap cursor-pointer";
+                    adminTabs[key].sec.classList.add('hidden');
+                }
+            });
+        }
+
+        Object.keys(adminTabs).forEach(key => {
+            adminTabs[key].btn.addEventListener('click', () => switchAdminTab(key));
+        });
+
+        // --- ADMIN FORM SUBMISSIONS ---
+        // Profile Config
+        elements.profileConfigForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            appState.studioName = elements.cfgStudioName.value.trim() || DEFAULT_DATA.studioName;
+            appState.studioTagline = elements.cfgStudioTagline.value.trim();
+            appState.whatsappNumber = elements.cfgWhatsapp.value.trim() || DEFAULT_DATA.whatsappNumber;
+            appState.formattedPhone = elements.cfgFormattedPhone.value.trim() || DEFAULT_DATA.formattedPhone;
+            appState.pixKey = elements.cfgPixKey.value.trim() || DEFAULT_DATA.pixKey;
+            appState.depositAmount = elements.cfgDepositAmount.value.trim();
+            appState.logoUrl = elements.cfgLogoUrl.value.trim();
+            if (elements.inputCtaTitle) {
+                appState.ctaTitle = elements.inputCtaTitle.value.trim() || DEFAULT_DATA.ctaTitle;
+            }
+            if (elements.inputCtaSubtitle) {
+                appState.ctaSubtitle = elements.inputCtaSubtitle.value.trim() || DEFAULT_DATA.ctaSubtitle;
+            }
+            if (elements.inputFooterText) {
+                appState.footerText = elements.inputFooterText.value.trim() || DEFAULT_DATA.footerText;
+            }
+
+            const timeSlotsArr = elements.cfgTimeSlots.value.split(',').map(s => s.trim()).filter(Boolean);
+            if (timeSlotsArr.length > 0) {
+                appState.timeSlots = timeSlotsArr;
+            }
+
+            saveState();
+            showToast("Configurações do perfil salvas com sucesso!");
+        });
+
+        // Upload Logo Image via Local File
+        elements.cfgLogoFile.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    appState.logoUrl = evt.target.result;
+                    elements.cfgLogoUrl.value = '';
+                    saveState();
+                    showToast("Logo atualizada com sucesso!");
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        elements.btnRemoveLogo.addEventListener('click', () => {
+            appState.logoUrl = "";
+            elements.cfgLogoUrl.value = "";
+            saveState();
+            showToast("Logo removida.");
+        });
+
+        // Services Management - Upload de Imagem em Base64
+        let newServicePhotoBase64 = "";
+
+        if (elements.newServicePhotoFile) {
+            elements.newServicePhotoFile.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    compressImage(file, 600, 600, 0.8).then(base64 => {
+                        newServicePhotoBase64 = base64;
+                        if (elements.newServicePhotoPreview) {
+                            elements.newServicePhotoPreview.innerHTML = `<img src="${base64}" class="w-full h-full object-cover">`;
+                        }
+                        if (elements.btnRemoveNewServicePhoto) {
+                            elements.btnRemoveNewServicePhoto.classList.remove('hidden');
+                        }
+                        showToast("Foto do serviço selecionada!");
+                    }).catch(err => {
+                        console.error(err);
+                        showToast("Erro ao processar a foto.");
+                    });
+                }
+            });
+        }
+
+        if (elements.btnRemoveNewServicePhoto) {
+            elements.btnRemoveNewServicePhoto.addEventListener('click', () => {
+                newServicePhotoBase64 = "";
+                if (elements.newServicePhotoFile) elements.newServicePhotoFile.value = "";
+                if (elements.newServicePhotoPreview) {
+                    elements.newServicePhotoPreview.innerHTML = `<i class="fa-solid fa-camera text-slate-400 text-xs"></i>`;
+                }
+                elements.btnRemoveNewServicePhoto.classList.add('hidden');
+                showToast("Foto do novo serviço removida.");
+            });
+        }
+
+        elements.btnAddService.addEventListener('click', () => {
+            const name = elements.newServiceName.value.trim();
+            const desc = elements.newServiceDesc.value.trim();
+            const price = parseFloat(elements.newServicePrice.value);
+
+            if (!name || isNaN(price)) {
+                showToast("Por favor informe o nome e o valor do serviço.");
+                return;
+            }
+
+            appState.services.push({
+                id: Date.now(),
+                name,
+                desc,
+                price,
+                imageUrl: newServicePhotoBase64 || DEFAULT_SERVICE_IMG
+            });
+
+            elements.newServiceName.value = '';
+            elements.newServiceDesc.value = '';
+            elements.newServicePrice.value = '';
+            newServicePhotoBase64 = '';
+            if (elements.newServicePhotoFile) elements.newServicePhotoFile.value = '';
+            if (elements.newServicePhotoPreview) {
+                elements.newServicePhotoPreview.innerHTML = `<i class="fa-solid fa-camera text-slate-400 text-xs"></i>`;
+            }
+            if (elements.btnRemoveNewServicePhoto) {
+                elements.btnRemoveNewServicePhoto.classList.add('hidden');
+            }
+
+            saveState();
+            showToast("Serviço adicionado com foto!");
+        });
+
+        // Alterar Foto de Serviço Cadastrado
+        window.changeServicePhoto = function(serviceId, inputElement) {
+            const file = inputElement.files[0];
+            if (file) {
+                compressImage(file, 600, 600, 0.8).then(base64 => {
+                    const s = appState.services.find(item => item.id === serviceId);
+                    if (s) {
+                        s.imageUrl = base64;
+                        saveState();
+                        showToast("Foto do serviço atualizada!");
+                    }
+                }).catch(err => {
+                    console.error(err);
+                    showToast("Erro ao processar imagem.");
+                });
+            }
+        };
+
+        window.removeService = function(id) {
+            appState.services = appState.services.filter(s => s.id !== id);
+            saveState();
+            showToast("Serviço removido.");
+        };
+
+        // Rules Management
+        elements.btnAddRule.addEventListener('click', () => {
+            const icon = elements.newRuleIcon.value.trim() || "📌";
+            const text = elements.newRuleText.value.trim();
+
+            if (!text) {
+                showToast("Informe o texto da regra.");
+                return;
+            }
+
+            appState.rules.push({
+                id: Date.now(),
+                icon,
+                text
+            });
+
+            elements.newRuleIcon.value = '📌';
+            elements.newRuleText.value = '';
+
+            saveState();
+            showToast("Regra adicionada!");
+        });
+
+        window.removeRule = function(id) {
+            appState.rules = appState.rules.filter(r => r.id !== id);
+            saveState();
+            showToast("Regra removida.");
+        };
+
+        // Agenda Blockings
+        elements.btnAddBlockedSlot.addEventListener('click', () => {
+            const date = elements.blockDateInput.value;
+            const slot = elements.blockTimeSelect.value;
+
+            if (!date || !slot) {
+                showToast("Selecione a data e o horário para bloquear.");
+                return;
+            }
+
+            if (!appState.blockedSlots[date]) {
+                appState.blockedSlots[date] = [];
+            }
+
+            if (!appState.blockedSlots[date].includes(slot)) {
+                appState.blockedSlots[date].push(slot);
+                appState.blockedSlots[date].sort();
+            }
+
+            saveState();
+            showToast(`Horário ${slot} bloqueado para ${formatDateBR(date)}.`);
+        });
+
+        window.removeBlockedSlot = function(date, slot) {
+            if (appState.blockedSlots[date]) {
+                appState.blockedSlots[date] = appState.blockedSlots[date].filter(s => s !== slot);
+                if (appState.blockedSlots[date].length === 0) {
+                    delete appState.blockedSlots[date];
+                }
+            }
+            // Also mark matching client booking as cancelado
+            if (appState.bookings) {
+                appState.bookings.forEach(b => {
+                    if (b.date === date && b.timeSlot === slot && b.status === 'agendado') {
+                        b.status = 'cancelado';
+                    }
+                });
+            }
+            saveState();
+            showToast(`Horário ${slot} liberado para ${formatDateBR(date)}.`);
+        };
+
+        window.cancelClientBooking = function(bookingId) {
+            if (confirm("Deseja realmente cancelar este agendamento e liberar o horário na agenda?")) {
+                const booking = appState.bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    booking.status = 'cancelado';
+                    if (appState.blockedSlots[booking.date]) {
+                        appState.blockedSlots[booking.date] = appState.blockedSlots[booking.date].filter(s => s !== booking.timeSlot);
+                        if (appState.blockedSlots[booking.date].length === 0) {
+                            delete appState.blockedSlots[booking.date];
+                        }
+                    }
+                }
+                saveState();
+                showToast("Agendamento cancelado e horário liberado!");
+            }
+        };
+
+        // Color Palette Switcher
+        window.selectPalette = function(key) {
+            appState.activePaletteKey = key;
+            saveState();
+            showToast(`Paleta ${PALETTES[key]?.name} aplicada!`);
+        };
+
+        function renderAdminLists() {
+            // Client Bookings in Admin Panel
+            const activeBookings = (appState.bookings || []).filter(b => b.status === 'agendado');
+            if (activeBookings.length === 0) {
+                elements.adminClientBookingsList.innerHTML = `<p class="text-[11px] text-slate-400 text-center py-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl">Nenhum agendamento ativo no momento.</p>`;
+            } else {
+                elements.adminClientBookingsList.innerHTML = activeBookings.map(b => `
+                    <div class="p-2.5 rounded-xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900/40 text-xs space-y-1">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-slate-900 dark:text-white">${b.clientName}</span>
+                            <span class="px-2 py-0.5 rounded-full bg-brand-100 dark:bg-brand-950/60 text-brand-700 dark:text-brand-300 text-[10px] font-bold">
+                                Marcado
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-slate-600 dark:text-slate-300">
+                            <strong>${b.serviceName}</strong> • ${formatDateBR(b.date)} às <strong>${b.timeSlot}</strong>
+                        </p>
+                        ${b.notes ? `<p class="text-[10px] text-slate-500 italic">Obs: ${b.notes}</p>` : ''}
+                        <div class="flex items-center justify-end space-x-2 pt-1 border-t border-purple-100 dark:border-purple-900/30">
+                            <button type="button" onclick="cancelClientBooking(${b.id})" class="text-[10px] font-bold text-rose-600 hover:text-rose-700 underline cursor-pointer">
+                                Cancelar & Liberar Horário
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Services com Foto Miniatura e Edição
+            elements.adminServicesList.innerHTML = appState.services.map(s => `
+                <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-xs gap-2">
+                    <div class="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-900 cursor-pointer" onclick="openPhotoModal(${s.id})" title="Toque para ver a foto ampliada">
+                        <img src="${s.imageUrl || DEFAULT_SERVICE_IMG}" class="w-full h-full object-cover" onerror="this.src=SVG_LASH_PLACEHOLDER">
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center space-x-1.5">
+                            <span class="font-bold text-slate-800 dark:text-slate-200 truncate">${s.name}</span>
+                            <span class="text-[10px] text-brand-600 dark:text-brand-400 font-bold shrink-0">R$ ${s.price}</span>
+                        </div>
+                        <p class="text-[10px] text-slate-400 truncate">${s.desc || 'Sem descrição'}</p>
+                        <div class="flex items-center space-x-2 mt-1">
+                            <label for="changePhoto_${s.id}" class="text-[10px] font-bold text-brand-600 dark:text-brand-400 hover:underline cursor-pointer flex items-center space-x-1">
+                                <i class="fa-solid fa-camera text-[9px]"></i>
+                                <span>Alterar Foto</span>
+                            </label>
+                            <input type="file" id="changePhoto_${s.id}" accept="image/*" class="hidden" onchange="changeServicePhoto(${s.id}, this)">
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeService(${s.id})" class="text-rose-500 hover:text-rose-700 p-2 cursor-pointer shrink-0" title="Excluir Serviço">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            // Rules
+            elements.adminRulesList.innerHTML = appState.rules.map(r => `
+                <div class="flex items-center justify-between p-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-xs">
+                    <div class="flex items-center space-x-2 truncate pr-2">
+                        <span>${r.icon}</span>
+                        <span class="text-slate-700 dark:text-slate-300 truncate">${r.text}</span>
+                    </div>
+                    <button type="button" onclick="removeRule(${r.id})" class="text-rose-500 hover:text-rose-700 px-2 shrink-0 cursor-pointer">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            // Time Slots Options in Blocking Select
+            elements.blockTimeSelect.innerHTML = appState.timeSlots.map(s => 
+                `<option value="${s}">${s}</option>`
+            ).join('');
+
+            // Blocked Slots List
+            let blockedHTML = '';
+            Object.keys(appState.blockedSlots).forEach(date => {
+                const slots = appState.blockedSlots[date];
+                slots.forEach(slot => {
+                    blockedHTML += `
+                        <div class="flex items-center justify-between p-2 rounded-xl bg-rose-50 dark:bg-rose-950/30 text-xs border border-rose-100 dark:border-rose-900/30">
+                            <span class="font-semibold text-rose-800 dark:text-rose-300">${formatDateBR(date)} às ${slot}</span>
+                            <button type="button" onclick="removeBlockedSlot('${date}', '${slot}')" class="text-rose-600 hover:text-rose-800 font-bold text-[11px] cursor-pointer">
+                                Desbloquear
+                            </button>
+                        </div>
+                    `;
+                });
+            });
+
+            elements.blockedSlotsList.innerHTML = blockedHTML || `<p class="text-[11px] text-slate-400 text-center py-2">Nenhum horário bloqueado.</p>`;
+
+            // Render Palette Presets Options
+            const currentPalette = appState.activePaletteKey || "lilas";
+            elements.colorPresetsContainer.innerHTML = Object.keys(PALETTES).map(key => {
+                const p = PALETTES[key];
+                const isSelected = key === currentPalette;
+
+                return `
+                    <div onclick="selectPalette('${key}')" class="p-3 rounded-2xl border cursor-pointer transition-all flex items-center justify-between ${isSelected ? 'border-brand-500 bg-brand-50/50 dark:bg-brand-950/30 ring-2 ring-brand-500/30' : 'border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:border-slate-300'}">
+                        <div class="space-y-0.5">
+                            <div class="flex items-center space-x-2">
+                                <span class="font-bold text-xs text-slate-900 dark:text-white">${p.name}</span>
+                                ${isSelected ? '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-500 text-white">Ativa</span>' : ''}
+                            </div>
+                            <p class="text-[10px] text-slate-500 dark:text-slate-400">${p.subtitle}</p>
+                        </div>
+                        <div class="flex items-center space-x-1 shrink-0">
+                            <div class="w-4 h-4 rounded-full shadow-sm" style="background-color: ${p.colors[700]}"></div>
+                            <div class="w-4 h-4 rounded-full shadow-sm" style="background-color: ${p.colors[500]}"></div>
+                            <div class="w-4 h-4 rounded-full shadow-sm" style="background-color: ${p.colors[200]}"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Restore Defaults
+        elements.btnRestoreDefaults.addEventListener('click', () => {
+            if (confirm("Tem certeza que deseja restaurar as configurações padrão?")) {
+                appState = JSON.parse(JSON.stringify(DEFAULT_DATA));
+                saveState();
+                showToast("Configurações restauradas com sucesso!");
+            }
+        });
+
+        // Initialize Theme & UI
+        applyThemePalette(appState.activePaletteKey);
+        renderUI();
+
+        // --- PWA SERVICE WORKER & BROWSER INSTALLATION ---
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((reg) => {
+                        console.log('PWA Service Worker ativo com escopo:', reg.scope);
+                    })
+                    .catch((err) => {
+                        console.warn('Erro ao registrar Service Worker:', err);
+                    });
+            });
+        }
+
+        let deferredInstallPrompt = null;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredInstallPrompt = e;
+            if (elements.pwaInstallBanner && !sessionStorage.getItem('pwa_banner_closed')) {
+                elements.pwaInstallBanner.classList.remove('hidden');
+            }
+        });
+
+        if (elements.btnInstallPwa) {
+            elements.btnInstallPwa.addEventListener('click', async () => {
+                if (!deferredInstallPrompt) return;
+                deferredInstallPrompt.prompt();
+                const { outcome } = await deferredInstallPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    showToast('🎉 Aplicativo instalado com sucesso!');
+                }
+                deferredInstallPrompt = null;
+                if (elements.pwaInstallBanner) {
+                    elements.pwaInstallBanner.classList.add('hidden');
+                }
+            });
+        }
+
+        if (elements.btnCloseInstallBanner) {
+            elements.btnCloseInstallBanner.addEventListener('click', () => {
+                if (elements.pwaInstallBanner) {
+                    elements.pwaInstallBanner.classList.add('hidden');
+                }
+                sessionStorage.setItem('pwa_banner_closed', 'true');
+            });
+        }
+
+        window.addEventListener('appinstalled', () => {
+            if (elements.pwaInstallBanner) {
+                elements.pwaInstallBanner.classList.add('hidden');
+            }
+            deferredInstallPrompt = null;
+            showToast('Studio Tayssa instalado na sua tela inicial!');
+        });
+    </script>
+</body>
+</html>
