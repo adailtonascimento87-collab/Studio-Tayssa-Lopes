@@ -2100,6 +2100,23 @@
             deferredInstallPrompt = null;
             showToast('Studio Tayssa instalado na sua tela inicial!');
         });
+        // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAG0shnN9K5lq5MxTd0lPxTSj4JhLkbxV0",
+  authDomain: "estudio-tayssa-lopes.firebaseapp.com",
+  projectId: "estudio-tayssa-lopes",
+  storageBucket: "estudio-tayssa-lopes.firebasestorage.app",
+  messagingSenderId: "247672020383",
+  appId: "1:247672020383:web:d94744a4dea468dbfa31aa"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
     </script>
 </body>
 </html>
