@@ -56,6 +56,7 @@
                 }
             }
         }
+        window.SVG_LASH_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23f3e8ff'/%3E%3Cpath d='M20 50 Q50 30 80 50 Q50 70 20 50' stroke='%236c429c' stroke-width='4' fill='none'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%236c429c'/%3E%3Cpath d='M30 38 L25 30 M40 34 L38 24 M50 32 L50 22 M60 34 L62 24 M70 38 L75 30' stroke='%236c429c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E";
     </script>
     <style>
         :root {
@@ -484,7 +485,13 @@
             <!-- DASHBOARD VIEW -->
             <div id="adminDashboardView" class="hidden space-y-4">
                 <div class="bg-brand-50 dark:bg-brand-950/40 text-brand-800 dark:text-brand-300 p-2.5 rounded-2xl text-xs font-semibold flex items-center justify-between border border-brand-100 dark:border-brand-900/40">
-                    <span class="flex items-center space-x-1.5"><i class="fa-solid fa-circle-check text-brand-500"></i><span>Sessão Ativa</span></span>
+                    <div class="flex items-center space-x-2">
+                        <span class="flex items-center space-x-1.5"><i class="fa-solid fa-circle-check text-brand-500"></i><span>Sessão Ativa</span></span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 font-bold border border-amber-200 dark:border-amber-800 flex items-center space-x-1" title="Conectado ao Firebase Cloud Firestore">
+                            <i class="fa-solid fa-fire text-amber-500 text-[10px]"></i>
+                            <span>Firebase Nuvem Ativo</span>
+                        </span>
+                    </div>
                     <button id="btnLogoutAdmin" type="button" class="text-[11px] underline text-brand-700 dark:text-brand-400 hover:text-brand-900 cursor-pointer">Sair</button>
                 </div>
 
@@ -721,6 +728,67 @@
             </div>
         </div>
     </div>
+
+    <!-- FIREBASE SDK & INITIALIZATION -->
+    <script type="module">
+        // 1. Importações oficiais via CDN gstatic (compatíveis com navegador sem Node/npm)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+        // 2. Sua configuração oficial do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAG0shnN9K5lq5MxTd0lPxTSj4JhLkbxV0",
+            authDomain: "estudio-tayssa-lopes.firebaseapp.com",
+            projectId: "estudio-tayssa-lopes",
+            storageBucket: "estudio-tayssa-lopes.firebasestorage.app",
+            messagingSenderId: "247672020383",
+            appId: "1:247672020383:web:d94744a4dea468dbfa31aa"
+        };
+
+        // 3. Inicialização do App e do Banco de Dados Firestore
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Disponibiliza a instância do banco globalmente de forma segura
+        window.db = db;
+        console.log("Firebase e Firestore inicializados com sucesso!");
+
+        // Sincronização em Nuvem (Firebase Cloud Sync)
+        window.firebaseSync = {
+            db,
+            save: async function(state) {
+                try {
+                    if (!db) return;
+                    const cleanData = JSON.parse(JSON.stringify(state));
+                    await setDoc(doc(db, "studios", "estudio-tayssa-lopes"), cleanData, { merge: true });
+                    console.log("Dados sincronizados no Firebase Firestore com sucesso!");
+                } catch (err) {
+                    console.warn("Aviso ao salvar no Firestore (mantido localmente):", err.message || err);
+                }
+            },
+            initSync: function(onRemoteUpdate) {
+                try {
+                    if (!db) return;
+                    onSnapshot(doc(db, "studios", "estudio-tayssa-lopes"), (snapshot) => {
+                        if (snapshot.exists()) {
+                            const remoteData = snapshot.data();
+                            if (remoteData && typeof onRemoteUpdate === 'function') {
+                                onRemoteUpdate(remoteData);
+                            }
+                        }
+                    }, (err) => {
+                        console.warn("Aviso no listener Firestore (utilizando cache local):", err.message || err);
+                    });
+                } catch (e) {
+                    console.warn("Erro ao iniciar listener Firestore:", e);
+                }
+            }
+        };
+
+        if (typeof window.onFirebaseReady === 'function') {
+            window.onFirebaseReady();
+        }
+    </script>
 
     <!-- JAVASCRIPT PRINCIPAL AUTÔNOMO -->
     <script>
@@ -1037,6 +1105,44 @@
             localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
             applyThemePalette(appState.activePaletteKey);
             renderUI();
+            if (window.firebaseSync && typeof window.firebaseSync.save === 'function') {
+                window.firebaseSync.save(appState);
+            }
+        }
+
+        // --- SINCRONIZAÇÃO EM TEMPO REAL COM FIREBASE FIRESTORE ---
+        window.onFirebaseReady = function() {
+            if (window.firebaseSync && typeof window.firebaseSync.initSync === 'function') {
+                window.firebaseSync.initSync((remoteData) => {
+                    if (!remoteData) return;
+                    console.log("Firestore: Dados em nuvem sincronizados com sucesso.");
+                    
+                    let loadedServices = (remoteData.services && Array.isArray(remoteData.services)) ? remoteData.services : appState.services;
+                    loadedServices.forEach(s => {
+                        if (!s.imageUrl) {
+                            const def = DEFAULT_DATA.services.find(d => d.id === s.id || d.name === s.name);
+                            s.imageUrl = def ? def.imageUrl : DEFAULT_SERVICE_IMG;
+                        }
+                    });
+
+                    appState = {
+                        ...appState,
+                        ...remoteData,
+                        services: loadedServices,
+                        rules: (remoteData.rules && Array.isArray(remoteData.rules)) ? remoteData.rules : appState.rules,
+                        timeSlots: (remoteData.timeSlots && Array.isArray(remoteData.timeSlots)) ? remoteData.timeSlots : appState.timeSlots,
+                        blockedSlots: remoteData.blockedSlots || appState.blockedSlots,
+                        bookings: remoteData.bookings || appState.bookings
+                    };
+                    localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
+                    applyThemePalette(appState.activePaletteKey);
+                    renderUI();
+                });
+            }
+        };
+
+        if (window.firebaseSync && window.onFirebaseReady) {
+            window.onFirebaseReady();
         }
 
         // Toast Helper
