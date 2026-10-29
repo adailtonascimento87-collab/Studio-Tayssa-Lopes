@@ -122,6 +122,34 @@
         button, a, input, select {
             touch-action: manipulation;
         }
+
+        /* REMOÇÃO PERMANENTE DO BOTÃO 'POWERED BY NETLIFY' */
+        .netlify-badge,
+        #netlify-badge,
+        [data-netlify-badge],
+        [class*="netlify-badge"],
+        [id*="netlify-badge"],
+        a[href*="netlify.com"],
+        a[href*="netlify.app"],
+        div:has(> a[href*="netlify.com"]),
+        div:has(> a[href*="netlify.app"]),
+        div:has(> [class*="netlify"]),
+        iframe[src*="netlify"],
+        div:has(> iframe[src*="netlify"]),
+        [aria-label*="Netlify" i],
+        [title*="Netlify" i] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            position: absolute !important;
+            left: -99999px !important;
+            top: -99999px !important;
+            z-index: -99999 !important;
+            clip: rect(0, 0, 0, 0) !important;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-purple-50/40 to-pink-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-purple-950/40 text-slate-800 dark:text-slate-100 min-h-full transition-colors duration-300 pb-12">
@@ -485,13 +513,7 @@
             <!-- DASHBOARD VIEW -->
             <div id="adminDashboardView" class="hidden space-y-4">
                 <div class="bg-brand-50 dark:bg-brand-950/40 text-brand-800 dark:text-brand-300 p-2.5 rounded-2xl text-xs font-semibold flex items-center justify-between border border-brand-100 dark:border-brand-900/40">
-                    <div class="flex items-center space-x-2">
-                        <span class="flex items-center space-x-1.5"><i class="fa-solid fa-circle-check text-brand-500"></i><span>Sessão Ativa</span></span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 font-bold border border-amber-200 dark:border-amber-800 flex items-center space-x-1" title="Conectado ao Firebase Cloud Firestore">
-                            <i class="fa-solid fa-fire text-amber-500 text-[10px]"></i>
-                            <span>Firebase Nuvem Ativo</span>
-                        </span>
-                    </div>
+                    <span class="flex items-center space-x-1.5"><i class="fa-solid fa-circle-check text-brand-500"></i><span>Sessão Ativa</span></span>
                     <button id="btnLogoutAdmin" type="button" class="text-[11px] underline text-brand-700 dark:text-brand-400 hover:text-brand-900 cursor-pointer">Sair</button>
                 </div>
 
@@ -2206,6 +2228,63 @@
             deferredInstallPrompt = null;
             showToast('Studio Tayssa instalado na sua tela inicial!');
         });
+
+        // --- REMOÇÃO PERMANENTE E MONITORAMENTO DO BOTÃO 'POWERED BY NETLIFY' ---
+        (function purgeNetlifyBadge() {
+            function removeBadges() {
+                const selectors = [
+                    '.netlify-badge',
+                    '#netlify-badge',
+                    '[data-netlify-badge]',
+                    '[class*="netlify-badge"]',
+                    '[id*="netlify-badge"]',
+                    'a[href*="netlify.com"]',
+                    'a[href*="netlify.app"]',
+                    'iframe[src*="netlify"]',
+                    '[aria-label*="Netlify" i]',
+                    '[title*="Netlify" i]'
+                ];
+                
+                try {
+                    document.querySelectorAll(selectors.join(',')).forEach(el => {
+                        const parent = el.closest('div.fixed') || el.closest('[style*="position: fixed"]') || el.parentElement || el;
+                        if (parent && parent !== document.body && parent !== document.documentElement) {
+                            parent.remove();
+                        } else {
+                            el.remove();
+                        }
+                    });
+
+                    // Varredura por texto em links e botões flutuantes
+                    document.querySelectorAll('a, button, div.fixed, [style*="fixed"]').forEach(el => {
+                        const text = (el.textContent || '').trim().toLowerCase();
+                        if (text.includes('powered by netlify') || text === 'netlify') {
+                            el.remove();
+                        }
+                    });
+                } catch (e) {
+                    // Proteção silenciosa
+                }
+            }
+
+            removeBadges();
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', removeBadges);
+            }
+            window.addEventListener('load', removeBadges);
+
+            // Observador contínuo para bloquear qualquer injeção tardia do provedor
+            try {
+                const observer = new MutationObserver(() => removeBadges());
+                if (document.body) {
+                    observer.observe(document.body, { childList: true, subtree: true });
+                } else {
+                    document.addEventListener('DOMContentLoaded', () => {
+                        if (document.body) observer.observe(document.body, { childList: true, subtree: true });
+                    });
+                }
+            } catch (e) {}
+        })();
     </script>
 </body>
 </html>
