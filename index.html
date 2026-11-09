@@ -1015,6 +1015,28 @@
             localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
             applyThemePalette(appState.activePaletteKey);
             renderUI();
+
+            if (typeof db !== 'undefined' && db) {
+                db.collection('configuracoes').doc('geral').set({
+                    studioName: appState.studioName,
+                    studioTagline: appState.studioTagline,
+                    whatsappNumber: appState.whatsappNumber,
+                    formattedPhone: appState.formattedPhone,
+                    pixKey: appState.pixKey,
+                    depositAmount: appState.depositAmount,
+                    ctaTitle: appState.ctaTitle,
+                    ctaSubtitle: appState.ctaSubtitle,
+                    footerText: appState.footerText,
+                    activePaletteKey: appState.activePaletteKey,
+                    timeSlots: appState.timeSlots,
+                    services: appState.services,
+                    rules: appState.rules,
+                    blockedSlots: appState.blockedSlots,
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true }).catch(err => {
+                    console.warn("Aviso ao salvar configurações no Firestore:", err);
+                });
+            }
         }
 
         // Toast Helper
@@ -1479,6 +1501,24 @@
             };
             appState.bookings.unshift(newBooking);
 
+            // Salvar no Firestore (Coleção 'agendamentos')
+            if (typeof db !== 'undefined' && db) {
+                db.collection('agendamentos').add({
+                    clientName: name,
+                    serviceName: service,
+                    date: dateVal,
+                    timeSlot: chosenSlot,
+                    notes: notes || '',
+                    status: 'agendado',
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(docRef => {
+                    newBooking.firestoreId = docRef.id;
+                    console.log("Agendamento salvo no Firestore com ID:", docRef.id);
+                }).catch(err => {
+                    console.warn("Aviso ao salvar agendamento no Firestore:", err);
+                });
+            }
+
             // Format Brazilian Date Display (DD/MM/YYYY)
             const formattedDate = formatDateBR(dateVal);
 
@@ -1873,13 +1913,22 @@
 
         window.cancelClientBooking = function(bookingId) {
             if (confirm("Deseja realmente cancelar este agendamento e liberar o horário na agenda?")) {
-                const booking = appState.bookings.find(b => b.id === bookingId);
+                const booking = appState.bookings.find(b => b.id === bookingId || b.firestoreId === bookingId);
                 if (booking) {
                     booking.status = 'cancelado';
                     if (appState.blockedSlots[booking.date]) {
                         appState.blockedSlots[booking.date] = appState.blockedSlots[booking.date].filter(s => s !== booking.timeSlot);
                         if (appState.blockedSlots[booking.date].length === 0) {
                             delete appState.blockedSlots[booking.date];
+                        }
+                    }
+
+                    if (typeof db !== 'undefined' && db) {
+                        const targetId = booking.firestoreId || (typeof bookingId === 'string' ? bookingId : null);
+                        if (targetId) {
+                            db.collection('agendamentos').doc(targetId).update({
+                                status: 'cancelado'
+                            }).catch(err => console.warn("Aviso ao cancelar agendamento no Firestore:", err));
                         }
                     }
                 }
@@ -2021,6 +2070,111 @@
         // Initialize Theme & UI
         applyThemePalette(appState.activePaletteKey);
         renderUI();
+    </script>
+
+    <!-- Scripts do Firebase (CDN) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script>
+      // Configuração do Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyCMHctgQ2XBtSpzvMr5y00JQlpT4YFxEDc",
+        authDomain: "studio-tayssa-lopes.firebaseapp.com",
+        projectId: "studio-tayssa-lopes",
+        storageBucket: "studio-tayssa-lopes.firebasestorage.app",
+        messagingSenderId: "173543100629",
+        appId: "1:173543100629:web:92a64171b83f393b7c925c"
+      };
+
+      // Inicializa o Firebase e o Firestore
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+      window.db = db;
+
+      // Sincronização em tempo real com o Firestore
+      function initFirestoreSync() {
+        if (!db) return;
+
+        // 1. Sincronizar configurações do estúdio (perfil, serviços, regras, bloqueios)
+        db.collection('configuracoes').doc('geral').onSnapshot((docSnap) => {
+          if (docSnap.exists) {
+            const data = docSnap.data();
+            let changed = false;
+
+            if (data.studioName && data.studioName !== appState.studioName) { appState.studioName = data.studioName; changed = true; }
+            if (data.studioTagline !== undefined && data.studioTagline !== appState.studioTagline) { appState.studioTagline = data.studioTagline; changed = true; }
+            if (data.whatsappNumber && data.whatsappNumber !== appState.whatsappNumber) { appState.whatsappNumber = data.whatsappNumber; changed = true; }
+            if (data.formattedPhone && data.formattedPhone !== appState.formattedPhone) { appState.formattedPhone = data.formattedPhone; changed = true; }
+            if (data.pixKey && data.pixKey !== appState.pixKey) { appState.pixKey = data.pixKey; changed = true; }
+            if (data.depositAmount !== undefined && data.depositAmount !== appState.depositAmount) { appState.depositAmount = data.depositAmount; changed = true; }
+            if (data.ctaTitle && data.ctaTitle !== appState.ctaTitle) { appState.ctaTitle = data.ctaTitle; changed = true; }
+            if (data.ctaSubtitle && data.ctaSubtitle !== appState.ctaSubtitle) { appState.ctaSubtitle = data.ctaSubtitle; changed = true; }
+            if (data.footerText && data.footerText !== appState.footerText) { appState.footerText = data.footerText; changed = true; }
+            if (data.activePaletteKey && data.activePaletteKey !== appState.activePaletteKey) {
+              appState.activePaletteKey = data.activePaletteKey;
+              applyThemePalette(appState.activePaletteKey);
+              changed = true;
+            }
+            if (data.timeSlots && Array.isArray(data.timeSlots)) { appState.timeSlots = data.timeSlots; changed = true; }
+            if (data.services && Array.isArray(data.services) && data.services.length > 0) { appState.services = data.services; changed = true; }
+            if (data.rules && Array.isArray(data.rules) && data.rules.length > 0) { appState.rules = data.rules; changed = true; }
+            if (data.blockedSlots) { appState.blockedSlots = data.blockedSlots; changed = true; }
+
+            if (changed) {
+              localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
+              renderUI();
+            }
+          } else {
+            // Se o documento ainda não existir no Firestore, salva os dados padrão atuais
+            saveState();
+          }
+        }, (error) => {
+          console.warn("Aviso ao escutar configurações no Firestore:", error);
+        });
+
+        // 2. Sincronizar agendamentos em tempo real
+        db.collection('agendamentos').orderBy('createdAt', 'desc').onSnapshot((snapshot) => {
+          const remoteBookings = [];
+          snapshot.forEach(docSnap => {
+            const b = docSnap.data();
+            remoteBookings.push({
+              id: docSnap.id,
+              firestoreId: docSnap.id,
+              clientName: b.clientName || 'Cliente',
+              serviceName: b.serviceName || 'Procedimento',
+              date: b.date || '',
+              timeSlot: b.timeSlot || '',
+              notes: b.notes || '',
+              status: b.status || 'agendado',
+              createdAt: b.createdAt ? (b.createdAt.toDate ? b.createdAt.toDate().toISOString() : b.createdAt) : new Date().toISOString()
+            });
+          });
+
+          if (remoteBookings.length > 0) {
+            appState.bookings = remoteBookings;
+            // Atualizar os bloqueios de horários da agenda com os agendamentos ativos
+            remoteBookings.forEach(b => {
+              if (b.status === 'agendado' && b.date && b.timeSlot) {
+                if (!appState.blockedSlots[b.date]) {
+                  appState.blockedSlots[b.date] = [];
+                }
+                if (!appState.blockedSlots[b.date].includes(b.timeSlot)) {
+                  appState.blockedSlots[b.date].push(b.timeSlot);
+                  appState.blockedSlots[b.date].sort();
+                }
+              }
+            });
+            localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
+            renderTimeSlots();
+            renderAdminLists();
+          }
+        }, (error) => {
+          console.warn("Aviso ao escutar agendamentos no Firestore:", error);
+        });
+      }
+
+      initFirestoreSync();
     </script>
 </body>
 </html>
