@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title id="pageTitle">Studio Tayssa Lopes | Agendamento & Serviços</title>
+    <title id="pageTitle">Facil Agenda | Agendamento & Serviços</title>
 
     <!-- META TAGS DE COMPARTILHAMENTO (OPEN GRAPH / WHATSAPP) -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Studio Tayssa Lopes | Agendamento & Serviços">
-    <meta property="og:description" content="Especialista em Cílios & Sobrancelhas. Agende seu horário e veja a tabela de valores online com confirmação automática.">
-    <meta property="og:image" content="https://placehold.co/1200x630/6c429c/ffffff?text=Studio+Tayssa+Lopes">
+    <meta property="og:title" content="Facil Agenda | Agendamento & Serviços">
+    <meta property="og:description" content="Especialista em Sistema de agenda online. Agende seu horário e veja a tabela de valores online com confirmação automática.">
+    <meta property="og:image" content="https://placehold.co/1200x630/6c429c/ffffff?text=Facil+Agenda">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- PWA & MOBILE META TAGS -->
-    <link rel="manifest" href="manifest.json">
+    <!-- MOBILE META TAGS -->
     <meta name="theme-color" content="#6c429c">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="Studio Tayssa">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-title" content="Facil Agenda">
 
     <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +54,6 @@
                 }
             }
         }
-        window.SVG_LASH_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23f3e8ff'/%3E%3Cpath d='M20 50 Q50 30 80 50 Q50 70 20 50' stroke='%236c429c' stroke-width='4' fill='none'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%236c429c'/%3E%3Cpath d='M30 38 L25 30 M40 34 L38 24 M50 32 L50 22 M60 34 L62 24 M70 38 L75 30' stroke='%236c429c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E";
     </script>
     <style>
         :root {
@@ -122,34 +119,6 @@
         button, a, input, select {
             touch-action: manipulation;
         }
-
-        /* REMOÇÃO PERMANENTE DO BOTÃO 'POWERED BY NETLIFY' */
-        .netlify-badge,
-        #netlify-badge,
-        [data-netlify-badge],
-        [class*="netlify-badge"],
-        [id*="netlify-badge"],
-        a[href*="netlify.com"],
-        a[href*="netlify.app"],
-        div:has(> a[href*="netlify.com"]),
-        div:has(> a[href*="netlify.app"]),
-        div:has(> [class*="netlify"]),
-        iframe[src*="netlify"],
-        div:has(> iframe[src*="netlify"]),
-        [aria-label*="Netlify" i],
-        [title*="Netlify" i] {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-            width: 0 !important;
-            height: 0 !important;
-            position: absolute !important;
-            left: -99999px !important;
-            top: -99999px !important;
-            z-index: -99999 !important;
-            clip: rect(0, 0, 0, 0) !important;
-        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-50 via-purple-50/40 to-pink-50/30 dark:from-slate-950 dark:via-slate-900 dark:to-purple-950/40 text-slate-800 dark:text-slate-100 min-h-full transition-colors duration-300 pb-12">
@@ -190,26 +159,6 @@
 
     <!-- MAIN APP CONTENT -->
     <main class="max-w-md mx-auto px-4 space-y-5">
-        <!-- PWA INSTALL BANNER (APARECE QUANDO O NAVEGADOR PERMITE INSTALAÇÃO) -->
-        <div id="pwaInstallBanner" class="hidden p-3.5 rounded-2xl bg-gradient-to-r from-brand-700 to-brand-500 text-white shadow-lg shadow-brand-700/20 flex items-center justify-between gap-3 animate-fade-in">
-            <div class="flex items-center space-x-3 min-w-0">
-                <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center shrink-0 text-white text-lg">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                </div>
-                <div class="min-w-0">
-                    <p class="text-xs font-bold leading-tight truncate">Instalar Aplicativo</p>
-                    <p class="text-[10px] text-purple-100/90 leading-tight">Acesse rápido direto da sua tela inicial</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-2 shrink-0">
-                <button id="btnInstallPwa" type="button" class="px-3 py-1.5 rounded-xl bg-white text-brand-700 hover:bg-purple-50 text-xs font-bold transition-all active:scale-95 shadow-xs cursor-pointer">
-                    Instalar
-                </button>
-                <button id="btnCloseInstallBanner" type="button" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer transition-all text-xs" title="Fechar">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-        </div>
 
         <!-- HERO PROFILE CARD -->
         <section class="glass-card rounded-3xl p-6 text-center shadow-xl shadow-brand-700/5 relative overflow-hidden">
@@ -751,80 +700,6 @@
         </div>
     </div>
 
-    <!-- FIREBASE SDK & INITIALIZATION -->
-    <script type="module">
-        // 1. Importações oficiais via CDN gstatic (compatíveis com navegador sem Node/npm)
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
-
-        // 2. Configuração oficial do Firebase estruturada de forma limpa e segura
-        // Evita falsos-positivos em scanners automáticos de tokens estáticos (GitHub Secret Scanning)
-        const getFirebaseConfig = () => {
-            const key = (() => {
-                try {
-                    return atob("QUl6YVN5QUcwc2huTjlLNWxxNU14VGQwbFB4VFNqNEpoTGtieFYw");
-                } catch (e) {
-                    return ["AIza", "SyAG0shnN9K5", "lq5MxTd0lPxTS", "j4JhLkbxV0"].join("");
-                }
-            })();
-
-            return {
-                apiKey: key,
-                authDomain: "estudio-tayssa-lopes.firebaseapp.com",
-                projectId: "estudio-tayssa-lopes",
-                storageBucket: "estudio-tayssa-lopes.firebasestorage.app",
-                messagingSenderId: "247672020383",
-                appId: "1:247672020383:web:d94744a4dea468dbfa31aa"
-            };
-        };
-
-        const firebaseConfig = getFirebaseConfig();
-
-        // 3. Inicialização do App e do Banco de Dados Firestore
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Disponibiliza a instância do banco globalmente de forma segura
-        window.db = db;
-        console.log("Firebase e Firestore inicializados com sucesso!");
-
-        // Sincronização em Nuvem (Firebase Cloud Sync)
-        window.firebaseSync = {
-            db,
-            save: async function(state) {
-                try {
-                    if (!db) return;
-                    const cleanData = JSON.parse(JSON.stringify(state));
-                    await setDoc(doc(db, "studios", "estudio-tayssa-lopes"), cleanData, { merge: true });
-                    console.log("Dados sincronizados no Firebase Firestore com sucesso!");
-                } catch (err) {
-                    console.warn("Aviso ao salvar no Firestore (mantido localmente):", err.message || err);
-                }
-            },
-            initSync: function(onRemoteUpdate) {
-                try {
-                    if (!db) return;
-                    onSnapshot(doc(db, "studios", "estudio-tayssa-lopes"), (snapshot) => {
-                        if (snapshot.exists()) {
-                            const remoteData = snapshot.data();
-                            if (remoteData && typeof onRemoteUpdate === 'function') {
-                                onRemoteUpdate(remoteData);
-                            }
-                        }
-                    }, (err) => {
-                        console.warn("Aviso no listener Firestore (utilizando cache local):", err.message || err);
-                    });
-                } catch (e) {
-                    console.warn("Erro ao iniciar listener Firestore:", e);
-                }
-            }
-        };
-
-        if (typeof window.onFirebaseReady === 'function') {
-            window.onFirebaseReady();
-        }
-    </script>
-
     <!-- JAVASCRIPT PRINCIPAL AUTÔNOMO -->
     <script>
         // --- PRESET PALETTES DEFINITION ---
@@ -970,8 +845,8 @@
         const DEFAULT_SERVICE_IMG = "https://images.unsplash.com/photo-1583001809863-234b17909b7c?auto=format&fit=crop&w=600&q=80";
         const SVG_LASH_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23f3e8ff'/%3E%3Cpath d='M20 50 Q50 30 80 50 Q50 70 20 50' stroke='%236c429c' stroke-width='4' fill='none'/%3E%3Ccircle cx='50' cy='50' r='10' fill='%236c429c'/%3E%3Cpath d='M30 38 L25 30 M40 34 L38 24 M50 32 L50 22 M60 34 L62 24 M70 38 L75 30' stroke='%236c429c' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E";
 
-        // Compressão Inteligente de Imagens para Base64 / LocalStorage
-        function compressImage(file, maxWidth = 600, maxHeight = 600, quality = 0.8) {
+        // Compressão Automática de Imagens para Base64 (máx 800px de largura e 80% qualidade JPEG)
+        function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
             return new Promise((resolve, reject) => {
                 if (!file || !file.type.match(/image.*/)) {
                     return reject(new Error("Arquivo de imagem inválido"));
@@ -980,7 +855,7 @@
                 reader.onload = (e) => {
                     const img = new Image();
                     img.onload = () => {
-                        const canvas = document.createElement('canvas');
+                        const canvas = document.createElement("canvas");
                         let width = img.width;
                         let height = img.height;
                         if (width > height) {
@@ -996,9 +871,9 @@
                         }
                         canvas.width = width;
                         canvas.height = height;
-                        const ctx = canvas.getContext('2d');
+                        const ctx = canvas.getContext("2d");
                         ctx.drawImage(img, 0, 0, width, height);
-                        resolve(canvas.toDataURL('image/jpeg', quality));
+                        resolve(canvas.toDataURL("image/jpeg", quality));
                     };
                     img.onerror = () => reject(new Error("Erro ao carregar a imagem"));
                     img.src = e.target.result;
@@ -1140,44 +1015,6 @@
             localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
             applyThemePalette(appState.activePaletteKey);
             renderUI();
-            if (window.firebaseSync && typeof window.firebaseSync.save === 'function') {
-                window.firebaseSync.save(appState);
-            }
-        }
-
-        // --- SINCRONIZAÇÃO EM TEMPO REAL COM FIREBASE FIRESTORE ---
-        window.onFirebaseReady = function() {
-            if (window.firebaseSync && typeof window.firebaseSync.initSync === 'function') {
-                window.firebaseSync.initSync((remoteData) => {
-                    if (!remoteData) return;
-                    console.log("Firestore: Dados em nuvem sincronizados com sucesso.");
-                    
-                    let loadedServices = (remoteData.services && Array.isArray(remoteData.services)) ? remoteData.services : appState.services;
-                    loadedServices.forEach(s => {
-                        if (!s.imageUrl) {
-                            const def = DEFAULT_DATA.services.find(d => d.id === s.id || d.name === s.name);
-                            s.imageUrl = def ? def.imageUrl : DEFAULT_SERVICE_IMG;
-                        }
-                    });
-
-                    appState = {
-                        ...appState,
-                        ...remoteData,
-                        services: loadedServices,
-                        rules: (remoteData.rules && Array.isArray(remoteData.rules)) ? remoteData.rules : appState.rules,
-                        timeSlots: (remoteData.timeSlots && Array.isArray(remoteData.timeSlots)) ? remoteData.timeSlots : appState.timeSlots,
-                        blockedSlots: remoteData.blockedSlots || appState.blockedSlots,
-                        bookings: remoteData.bookings || appState.bookings
-                    };
-                    localStorage.setItem('studio_tayssa_data', JSON.stringify(appState));
-                    applyThemePalette(appState.activePaletteKey);
-                    renderUI();
-                });
-            }
-        };
-
-        if (window.firebaseSync && window.onFirebaseReady) {
-            window.onFirebaseReady();
         }
 
         // Toast Helper
@@ -1238,10 +1075,6 @@
             modalWhatsAppBtnText: document.getElementById('modalWhatsAppBtnText'),
             btnCopyMessageModal: document.getElementById('btnCopyMessageModal'),
             btnCloseSuccessModal: document.getElementById('btnCloseSuccessModal'),
-            // PWA Install Banner
-            pwaInstallBanner: document.getElementById('pwaInstallBanner'),
-            btnInstallPwa: document.getElementById('btnInstallPwa'),
-            btnCloseInstallBanner: document.getElementById('btnCloseInstallBanner'),
             // Admin Modal
             adminModal: document.getElementById('adminModal'),
             btnOpenAdmin: document.getElementById('btnOpenAdmin'),
@@ -1650,9 +1483,9 @@
             const formattedDate = formatDateBR(dateVal);
 
             // Construct WhatsApp Message
-            let msg = `*SOLICITAÇÃO DE AGENDAMENTO*\n\n`;
-            msg += `🫆 *Nome:* ${name}\n`;
-            msg += `✅ *Procedimento:* ${service}\n`;
+            let msg = `✨ *SOLICITAÇÃO DE AGENDAMENTO* ✨\n\n`;
+            msg += `👤 *Nome:* ${name}\n`;
+            msg += `💅 *Procedimento:* ${service}\n`;
             msg += `📅 *Data:* ${formattedDate}\n`;
             msg += `⏰ *Horário:* ${chosenSlot}\n`;
             if (notes) msg += `📝 *Observação:* ${notes}\n`;
@@ -1851,17 +1684,18 @@
         });
 
         // Upload Logo Image via Local File
-        elements.cfgLogoFile.addEventListener('change', (e) => {
+        elements.cfgLogoFile.addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (file) {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    appState.logoUrl = evt.target.result;
-                    elements.cfgLogoUrl.value = '';
+                compressImage(file, 800, 800, 0.8).then(base64 => {
+                    appState.logoUrl = base64;
+                    elements.cfgLogoUrl.value = "";
                     saveState();
-                    showToast("Logo atualizada com sucesso!");
-                };
-                reader.readAsDataURL(file);
+                    showToast("Logo comprimida e atualizada com sucesso!");
+                }).catch(err => {
+                    console.error(err);
+                    showToast("Erro ao processar a logo.");
+                });
             }
         });
 
@@ -1879,7 +1713,7 @@
             elements.newServicePhotoFile.addEventListener('change', (e) => {
                 const file = e.target.files[0];
                 if (file) {
-                    compressImage(file, 600, 600, 0.8).then(base64 => {
+                    compressImage(file, 800, 800, 0.8).then(base64 => {
                         newServicePhotoBase64 = base64;
                         if (elements.newServicePhotoPreview) {
                             elements.newServicePhotoPreview.innerHTML = `<img src="${base64}" class="w-full h-full object-cover">`;
@@ -1946,7 +1780,7 @@
         window.changeServicePhoto = function(serviceId, inputElement) {
             const file = inputElement.files[0];
             if (file) {
-                compressImage(file, 600, 600, 0.8).then(base64 => {
+                compressImage(file, 800, 800, 0.8).then(base64 => {
                     const s = appState.services.find(item => item.id === serviceId);
                     if (s) {
                         s.imageUrl = base64;
@@ -2187,117 +2021,6 @@
         // Initialize Theme & UI
         applyThemePalette(appState.activePaletteKey);
         renderUI();
-
-        // --- PWA SERVICE WORKER & BROWSER INSTALLATION ---
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then((reg) => {
-                        console.log('PWA Service Worker ativo com escopo:', reg.scope);
-                    })
-                    .catch((err) => {
-                        console.warn('Erro ao registrar Service Worker:', err);
-                    });
-            });
-        }
-
-        let deferredInstallPrompt = null;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredInstallPrompt = e;
-            if (elements.pwaInstallBanner && !sessionStorage.getItem('pwa_banner_closed')) {
-                elements.pwaInstallBanner.classList.remove('hidden');
-            }
-        });
-
-        if (elements.btnInstallPwa) {
-            elements.btnInstallPwa.addEventListener('click', async () => {
-                if (!deferredInstallPrompt) return;
-                deferredInstallPrompt.prompt();
-                const { outcome } = await deferredInstallPrompt.userChoice;
-                if (outcome === 'accepted') {
-                    showToast('🎉 Aplicativo instalado com sucesso!');
-                }
-                deferredInstallPrompt = null;
-                if (elements.pwaInstallBanner) {
-                    elements.pwaInstallBanner.classList.add('hidden');
-                }
-            });
-        }
-
-        if (elements.btnCloseInstallBanner) {
-            elements.btnCloseInstallBanner.addEventListener('click', () => {
-                if (elements.pwaInstallBanner) {
-                    elements.pwaInstallBanner.classList.add('hidden');
-                }
-                sessionStorage.setItem('pwa_banner_closed', 'true');
-            });
-        }
-
-        window.addEventListener('appinstalled', () => {
-            if (elements.pwaInstallBanner) {
-                elements.pwaInstallBanner.classList.add('hidden');
-            }
-            deferredInstallPrompt = null;
-            showToast('Studio Tayssa instalado na sua tela inicial!');
-        });
-
-        // --- REMOÇÃO PERMANENTE E MONITORAMENTO DO BOTÃO 'POWERED BY NETLIFY' ---
-        (function purgeNetlifyBadge() {
-            function removeBadges() {
-                const selectors = [
-                    '.netlify-badge',
-                    '#netlify-badge',
-                    '[data-netlify-badge]',
-                    '[class*="netlify-badge"]',
-                    '[id*="netlify-badge"]',
-                    'a[href*="netlify.com"]',
-                    'a[href*="netlify.app"]',
-                    'iframe[src*="netlify"]',
-                    '[aria-label*="Netlify" i]',
-                    '[title*="Netlify" i]'
-                ];
-                
-                try {
-                    document.querySelectorAll(selectors.join(',')).forEach(el => {
-                        const parent = el.closest('div.fixed') || el.closest('[style*="position: fixed"]') || el.parentElement || el;
-                        if (parent && parent !== document.body && parent !== document.documentElement) {
-                            parent.remove();
-                        } else {
-                            el.remove();
-                        }
-                    });
-
-                    // Varredura por texto em links e botões flutuantes
-                    document.querySelectorAll('a, button, div.fixed, [style*="fixed"]').forEach(el => {
-                        const text = (el.textContent || '').trim().toLowerCase();
-                        if (text.includes('powered by netlify') || text === 'netlify') {
-                            el.remove();
-                        }
-                    });
-                } catch (e) {
-                    // Proteção silenciosa
-                }
-            }
-
-            removeBadges();
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', removeBadges);
-            }
-            window.addEventListener('load', removeBadges);
-
-            // Observador contínuo para bloquear qualquer injeção tardia do provedor
-            try {
-                const observer = new MutationObserver(() => removeBadges());
-                if (document.body) {
-                    observer.observe(document.body, { childList: true, subtree: true });
-                } else {
-                    document.addEventListener('DOMContentLoaded', () => {
-                        if (document.body) observer.observe(document.body, { childList: true, subtree: true });
-                    });
-                }
-            } catch (e) {}
-        })();
     </script>
 </body>
 </html>
